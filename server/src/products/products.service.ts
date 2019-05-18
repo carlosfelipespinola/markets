@@ -9,10 +9,15 @@ export class ProductsService {
 
     async create(createProductDto: any): Promise<Product> {
         const createdProduct = new this.productModel(createProductDto);
-        return createdProduct.save();
+        const err = await createdProduct.validate();
+        if (err != null){
+            throw err;
+        }
+        return await createdProduct.save();
     }
 
     async findAll(): Promise<Product[]> {
         return await this.productModel.find().exec();
     }
+
 }

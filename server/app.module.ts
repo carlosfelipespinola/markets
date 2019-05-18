@@ -3,6 +3,7 @@ import { AngularUniversalModule } from '@nestjs/ng-universal';
 import { join } from 'path';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './src/products/products.module';
+import { MarketsModule } from './src/markets/markets.module';
 
 @Module({
   imports: [
@@ -11,8 +12,9 @@ import { ProductsModule } from './src/products/products.module';
       bundle: require('../server/main'),
       liveReload: true
     }),
-    MongooseModule.forRoot('mongodb://localhost/markets'),
-    ProductsModule
+    MongooseModule.forRoot('mongodb://localhost:27017/markets'),
+    ProductsModule,
+    MarketsModule
   ],
 })
 export class ApplicationModule {}

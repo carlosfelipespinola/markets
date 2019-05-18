@@ -1,6 +1,13 @@
 import { Document } from 'mongoose';
 
+interface Stock {
+    quantity: number;
+    unit: string;
+}
+
 export default interface Product extends Document {
     name: string;
-    stock: number;
+    stock: Stock;
+    price: number;
+    images: Array<string>;
 }
