@@ -4,6 +4,8 @@ import { join } from 'path';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductsModule } from './src/products/products.module';
 import { MarketsModule } from './src/markets/markets.module';
+import { AuthModule } from './src/auth/auth.module';
+import { EncryptionModule } from './src/encryption/encryption.module';
 
 @Module({
   imports: [
@@ -14,7 +16,8 @@ import { MarketsModule } from './src/markets/markets.module';
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/markets'),
     ProductsModule,
-    MarketsModule
+    MarketsModule,
+    AuthModule,
   ],
 })
 export class ApplicationModule {}
