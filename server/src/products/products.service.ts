@@ -5,19 +5,19 @@ import Product from './product.interface';
 
 @Injectable()
 export class ProductsService {
-    constructor(@InjectModel('Product') private readonly productModel: Model<Product>) {}
+  constructor(@InjectModel('Product') private readonly productModel: Model<Product>) { }
 
-    async create(createProductDto: any): Promise<Product> {
-        const createdProduct = new this.productModel(createProductDto);
-        const err = await createdProduct.validate();
-        if (err != null){
-            throw err;
-        }
-        return await createdProduct.save();
+  async create(createProductDto: any): Promise<Product> {
+    const createdProduct = new this.productModel(createProductDto);
+    const err = await createdProduct.validate();
+    if (err != null) {
+      throw err;
     }
+    return await createdProduct.save();
+  }
 
-    async findAll(): Promise<Product[]> {
-        return await this.productModel.find().exec();
-    }
+  async findAll(): Promise<Product[]> {
+    return await this.productModel.find().exec();
+  }
 
 }
