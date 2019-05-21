@@ -16,6 +16,14 @@ const AdressSchema = new mongoose.Schema({
 });
 
 export const MarketSchema = new mongoose.Schema({
+  emailLogin: {
+    type: String,
+    required: [true, 'é necessário cadastrar um email para login']
+  },
+  password: {
+    type: String,
+    required: [true, 'é necessário cadastrar uma senha'],
+  },
   tradingName: {
     type: String,
     required: [true, 'é obrigatório o cadastro de um nome fantasia']
