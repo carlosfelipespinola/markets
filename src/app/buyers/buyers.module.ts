@@ -8,10 +8,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { BuyersHomePageBottomSheetComponent } from './components/buyers-home-page-bottom-sheet/buyers-home-page-bottom-sheet.component';
+import { BuyProductsAtMarketPageComponent } from './pages/buy-products-at-market-page/buy-products-at-market-page.component';
 
 @NgModule({
   entryComponents: [BuyersHomePageBottomSheetComponent],
-  declarations: [HomePageComponent, BuyersHomePageBottomSheetComponent],
+  declarations: [
+    HomePageComponent,
+    BuyersHomePageBottomSheetComponent,
+    BuyProductsAtMarketPageComponent
+  ],
   imports: [
     CommonModule,
     BuyersRoutingModule,
