@@ -1,0 +1,10 @@
+<mat-list>
+  <mat-list-item matRipple *ngFor="let market of markets" (click)="onMarketClick(market)">
+    <img width="50" height="50" src="https://www.w3schools.com/howto/img_avatar2.png" alt="foto-mercado">
+    <h4 mat-line>{{market.tradeName}}</h4>
+    <p mat-line>
+      <app-star-rating-input [rating]="market.rating"></app-star-rating-input>
+    </p>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
