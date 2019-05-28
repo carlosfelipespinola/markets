@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  Encontrar supermercados
+</mat-toolbar>
+<markets-list-of-markets 
+[markets]="marketsFound" 
+(marketClickListener)="onMarketClick($event)"
+></markets-list-of-markets>
+<button mat-fab color="primary" (click)="onFabClick()">
+  <mat-icon>filter_list</mat-icon>
+</button>
