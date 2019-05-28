@@ -1,0 +1,13 @@
+<form #form="ngForm" (ngSubmit)="loginFormSubmitted()">
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="email" type="email">
+    <mat-icon matSuffix>alternate_email</mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Senha</mat-label>
+    <input matInput placeholder="senha" type="password">
+    <mat-icon matSuffix>lock</mat-icon>
+  </mat-form-field>
+  <button mat-raised-button color="accent">Entrar</button>
+</form>

@@ -1,0 +1,12 @@
+<mat-card>
+  <h1>{{appName}}</h1>
+
+  <mat-tab-group mat-stretch-tabs color="accent">
+    <mat-tab label="Login">
+      <markets-auth-login-form (loginSuccess)="onLogin($event)"></markets-auth-login-form>
+    </mat-tab>
+    <mat-tab label="Cadastro">
+      <markets-auth-login-form (loginSuccess)="onLogin($event)"></markets-auth-login-form>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
