@@ -7,9 +7,11 @@ import { MarketsModule } from '../markets/markets.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { BuyersHomePageBottomSheetComponent } from './components/buyers-home-page-bottom-sheet/buyers-home-page-bottom-sheet.component';
 
 @NgModule({
-  declarations: [HomePageComponent],
+  entryComponents: [BuyersHomePageBottomSheetComponent],
+  declarations: [HomePageComponent, BuyersHomePageBottomSheetComponent],
   imports: [
     CommonModule,
     BuyersRoutingModule,

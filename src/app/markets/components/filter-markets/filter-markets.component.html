@@ -1,0 +1,9 @@
+<div class="main">
+  <mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput type="text" [(ngModel)]="filters.query">
+  </mat-form-field>
+  <button [disabled]="filters.query == null || filters.query.length == 0" mat-raised-button color="primary" (click)="onFilterButtonClick()">
+    <mat-icon>search</mat-icon>
+  </button>
+</div>
