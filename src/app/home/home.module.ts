@@ -6,13 +6,14 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { AuthModule } from '../auth/auth.module';
 import {MatCardModule} from '@angular/material/card';
 import { HomeRoutingModule } from './home.routing';
+import { LoginFormComponentModule } from '../auth/components/login-form/login-form-component.module';
 
 @NgModule({
   declarations: [HomePageComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    AuthModule,
+    LoginFormComponentModule,
     MatToolbarModule,
     MatTabsModule,
     MatCardModule,

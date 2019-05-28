@@ -7,15 +7,16 @@ import { MarketsModule } from '../markets/markets.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import { BuyersHomePageBottomSheetComponent } from './components/buyers-home-page-bottom-sheet/buyers-home-page-bottom-sheet.component';
 import { BuyProductsAtMarketPageComponent } from './pages/buy-products-at-market-page/buy-products-at-market-page.component';
 import { ProductsModule } from '../products/products.module';
+import { BuyersHomePageBottomSheetComponentModule } from './components/buyers-home-page-bottom-sheet/buyers-home-page-bottom-sheet.module';
+import { ListOfMarketsComponentModule } from '../markets/components/list-of-markets/list-of-markets.module';
+import { ProductCardComponentModule } from '../products/components/product-card/product-card-component.module';
 
 @NgModule({
-  entryComponents: [BuyersHomePageBottomSheetComponent],
+  entryComponents: [],
   declarations: [
     HomePageComponent,
-    BuyersHomePageBottomSheetComponent,
     BuyProductsAtMarketPageComponent
   ],
   imports: [
@@ -26,7 +27,10 @@ import { ProductsModule } from '../products/products.module';
     MatButtonModule,
     MatIconModule,
     MatBottomSheetModule,
-    ProductsModule
+    ProductsModule,
+    BuyersHomePageBottomSheetComponentModule,
+    ListOfMarketsComponentModule,
+    ProductCardComponentModule
   ],
 })
 export class BuyersModule { }

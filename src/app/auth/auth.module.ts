@@ -8,15 +8,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgForm, FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [LoginFormComponent],
+  declarations: [],
   imports: [
     CommonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule
   ],
-  exports: [LoginFormComponent]
+  exports: []
 })
 export class AuthModule { }
