@@ -42,7 +42,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ScrollingModule
+    ScrollingModule,
   ],
 })
 export class BuyersModule { }

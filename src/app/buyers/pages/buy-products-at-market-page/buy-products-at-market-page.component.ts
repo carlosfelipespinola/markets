@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Inject, AfterViewInit } from '@angular/core';
 import { MarketData } from 'src/app/markets/data_classes/MarketData';
 import { ProductData } from 'src/app/products/data-classes/product-data';
 import { HostListener } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -10,7 +9,7 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './buy-products-at-market-page.component.html',
   styleUrls: ['./buy-products-at-market-page.component.scss']
 })
-export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy {
+export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public products: Array<ProductData> = [
     new ProductData({name: "Coca cola 2 litros", price: "7.50", images: ["https://static.carrefour.com.br/medias/sys_master/images/images/hab/h59/h00/h00/9494639018014.jpg"]}),
@@ -26,12 +25,21 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy {
   @ViewChild('searchInput')
   public searchInput: ElementRef<HTMLInputElement>;
   private defaultBodyOverflowStyle = null;
+  public availableCategories: Array<{name: string, selected: boolean, getColor: () => string}> = [
+    {name: 'Todos os itens', selected: true, getColor: () => 'primary' },
+    {name: 'Bebidas', selected: false, getColor: () => 'primary'},
+    {name: 'Comidas', selected: false, getColor: () => 'accent'},
+    {name: 'Limpeza', selected: false, getColor: () => 'accent'},
+  ];
 
   constructor(@Inject(DOCUMENT) private document: any) { }
 
   ngOnInit() {
-    this.defaultBodyOverflowStyle = this.document.body.style.overflow;
     this.market = new MarketData({tradeName: 'Supermercado criméia'});
+  }
+
+  ngAfterViewInit() {
+    this.defaultBodyOverflowStyle = this.document.body.style.overflow;
   }
 
   ngOnDestroy() {
@@ -56,5 +64,15 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy {
   public clearSearchProductString(e: any) {
     this.searchProductString = '';
     this.searchInput.nativeElement.focus();
+  }
+
+  public setSelectedCategory(category: any) {
+    this.availableCategories.forEach((candicateCategory) => {
+      if (candicateCategory.name === category.name ) {
+        candicateCategory.selected = true;
+      } else {
+        candicateCategory.selected = false;
+      }
+    });
   }
 }

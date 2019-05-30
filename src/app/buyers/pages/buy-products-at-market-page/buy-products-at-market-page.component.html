@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar position="fixed" color="primary">
   <mat-toolbar-row>
     <button mat-icon-button (click)="setSearchingMode(false)">
       <mat-icon *ngIf="!searchingMode">arrow_back</mat-icon>
@@ -24,6 +24,7 @@
   </div>
 </div>
 
+
 <div class="container">
   <div class="row overflow">
     <button mat-stroked-button>Entrega: grátis</button>
@@ -32,16 +33,26 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="column">
-    <h2 class="padding-bottom">Todos os produtos</h2>
-    <div class="row">
-      <app-products-product-card *ngFor="let product of products" [product]="product">
-        <div class="w100" card-actions>
-          <button class="w100" mat-flat-button color="accent">Adicionar ao carrinho</button>
-        </div>
-      </app-products-product-card>
-    </div>
+<div *ngIf="!searchingMode" class="container" position="sticky" style="margin: 0; height: 65px">
+  <div class="row overflow">
+    <mat-chip-list [multiple]="false">
+      <mat-chip
+        *ngFor="let category of availableCategories" 
+        color="accent"
+        (click)="setSelectedCategory(category)"
+        [selected]="category.selected"
+        selectable="true">{{category.name}}</mat-chip>
+    </mat-chip-list>
+  </div>
+</div>
+
+<div class="container">  
+  <div class="row">
+    <app-products-product-card *ngFor="let product of products" [product]="product">
+      <div class="w100" card-actions>
+        <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
+      </div>
+    </app-products-product-card>
   </div>
 </div>
 

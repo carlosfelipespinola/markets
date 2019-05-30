@@ -2,7 +2,7 @@
   padding-top: 56px;
   display: block;
   background-color: whitesmoke;
-  overflow: hidden;
+  position: relative;
 }
 
 app-products-product-card{
@@ -10,17 +10,25 @@ app-products-product-card{
   margin: 8px 0;
 }
 
+mat-toolbar[position="fixed"] {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  height: 56px;
+}
+
+*[position="sticky"] {
+  position: sticky;
+  top: 56px;
+  height: 56px;
+  z-index: 10;
+}
+
 button.fab-btn{
   position: fixed;
   bottom: 16px;
   right: 16px;
-  z-index: 1000;
-}
-
-mat-toolbar{
-  position: fixed;
-  top: 0;
-  z-index: 1000;
+  z-index: 11;
 }
 
 .badgeposition{
@@ -41,5 +49,5 @@ mat-toolbar{
   right: 0;
   margin-top: 56px;
   margin-bottom: 0px;
-  z-index: 999;
+  z-index: 10;
 }
