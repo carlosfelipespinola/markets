@@ -1,0 +1,45 @@
+mat-card-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+mat-card-content{
+  margin-bottom: 0px;
+}
+
+img{
+  max-width: 90px;
+  max-height: 90px;
+  height: 100%;
+  margin: 0;
+  object-fit: scale-down;
+}
+
+mat-card{
+  border: 1px solid whitesmoke;
+}
+
+mat-card-subtitle{
+  margin-bottom: 8px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.row > div:first-child{
+  flex: 1 1 30%;
+}
+
+.row > div:last-child{
+  flex: 1 1 70%;
+}
+
+.column{
+  padding-left: 8px;
+}
+
