@@ -1,0 +1,45 @@
+:host{
+  padding-top: 56px;
+  display: block;
+  background-color: whitesmoke;
+  overflow: hidden;
+}
+
+app-products-product-card{
+  flex: 1 1 25%;
+  margin: 8px 0;
+}
+
+button.fab-btn{
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1000;
+}
+
+mat-toolbar{
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.badgeposition{
+  position: relative;
+  top: -10px;
+  right: -32px;
+}
+
+.search-form-field{
+  flex: 1 1 100%;
+}
+
+.search-view-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin-top: 56px;
+  margin-bottom: 0px;
+  z-index: 999;
+}

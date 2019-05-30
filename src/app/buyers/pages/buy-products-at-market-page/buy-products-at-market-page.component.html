@@ -1,5 +1,53 @@
 <mat-toolbar color="primary">
-  {{market.tradeName}}
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="setSearchingMode(false)">
+      <mat-icon *ngIf="!searchingMode">arrow_back</mat-icon>
+      <mat-icon *ngIf="searchingMode">close</mat-icon>
+    </button>
+    <span *ngIf="!searchingMode">{{market.tradeName}}</span>
+    <span *ngIf="!searchingMode" class="spacer"></span>
+    
+    <mat-form-field class="padding-bottom search-form-field" color="primary" appearance="standard" *ngIf="searchingMode">
+      <input #searchInput [(ngModel)]="searchProductString" matInput placeholder="Buscar produtos" autocomplete="off" style="font-size: 14px" (ngModelChange)="searchProductInputChangeListener()">
+    </mat-form-field>
+    <button (click)="clearSearchProductString($event)" *ngIf="searchProductString !== null && searchProductString.length > 0 && searchingMode" mat-button>Limpar</button>
+
+    <button *ngIf="!searchingMode" mat-icon-button (click)="setSearchingMode(true)">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 
-<app-products-product-card></app-products-product-card>
+<div class="container search-view-container" *ngIf="searchingMode">
+  <div class="column">
+    <h3 class="padding-bottom">Procurando por: {{searchProductString}}</h3>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row overflow">
+    <button mat-stroked-button>Entrega: grátis</button>
+    <button mat-stroked-button>5 estrelas</button>
+    <button mat-stroked-button>Localização</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="column">
+    <h2 class="padding-bottom">Todos os produtos</h2>
+    <div class="row">
+      <app-products-product-card *ngFor="let product of products" [product]="product">
+        <div class="w100" card-actions>
+          <button class="w100" mat-flat-button color="accent">Adicionar ao carrinho</button>
+        </div>
+      </app-products-product-card>
+    </div>
+  </div>
+</div>
+
+
+
+<button class="fab-btn" mat-fab color="accent">
+  <span class="badgeposition" matBadge="8" matBadgePosition="above before" matBadgeOverlap="true" matBadgeSize="medium" matBadgeColor="primary"></span>
+  <mat-icon>shopping_cart</mat-icon>
+</button>

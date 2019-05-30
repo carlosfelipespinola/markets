@@ -12,6 +12,12 @@ import { ProductsModule } from '../products/products.module';
 import { BuyersHomePageBottomSheetComponentModule } from './components/buyers-home-page-bottom-sheet/buyers-home-page-bottom-sheet.module';
 import { ListOfMarketsComponentModule } from '../markets/components/list-of-markets/list-of-markets.module';
 import { ProductCardComponentModule } from '../products/components/product-card/product-card-component.module';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   entryComponents: [],
@@ -30,7 +36,13 @@ import { ProductCardComponentModule } from '../products/components/product-card/
     ProductsModule,
     BuyersHomePageBottomSheetComponentModule,
     ListOfMarketsComponentModule,
-    ProductCardComponentModule
+    ProductCardComponentModule,
+    MatChipsModule,
+    MatBadgeModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ScrollingModule
   ],
 })
 export class BuyersModule { }
