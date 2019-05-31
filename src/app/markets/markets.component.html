@@ -1,0 +1,12 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <div class="container">
+      <div fxLayout="column">
+        <div fxFlex="100%" *ngFor="let routeUrl of routeUrls"> {{routeUrl.name}}  </div>
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
