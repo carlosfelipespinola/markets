@@ -3,6 +3,7 @@ import { MarketData } from 'src/app/markets/data_classes/MarketData';
 import { ProductData } from 'src/app/products/data-classes/product-data';
 import { HostListener } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-buy-products-at-market-page',
@@ -31,8 +32,17 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
     {name: 'Comidas', selected: false, getColor: () => 'accent'},
     {name: 'Limpeza', selected: false, getColor: () => 'accent'},
   ];
+  public currentLayout: 'mobile' | 'web' = 'mobile';
 
-  constructor(@Inject(DOCUMENT) private document: any) { }
+  constructor(@Inject(DOCUMENT) private document: any, breakPointObserver: BreakpointObserver) {
+    breakPointObserver.observe([Breakpoints.Tablet, Breakpoints.Handset]).subscribe((result) => {
+      if(result.matches) {
+        this.currentLayout = 'mobile';
+      } else {
+        this.currentLayout = 'web';
+      }
+    });
+  }
 
   ngOnInit() {
     this.market = new MarketData({tradeName: 'Supermercado criméia'});
@@ -74,5 +84,9 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
         candicateCategory.selected = false;
       }
     });
+  }
+
+  get selectedCategory() {
+    return this.availableCategories.find(x => x.selected === true);
   }
 }

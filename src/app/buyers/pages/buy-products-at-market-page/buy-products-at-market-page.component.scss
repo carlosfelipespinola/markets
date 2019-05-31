@@ -41,6 +41,15 @@ button.fab-btn{
   flex: 1 1 100%;
 }
 
+.search-form-field input::placeholder{
+  color: white;
+  opacity: 0.5;
+} 
+
+.search-form-field-large{
+  flex: 1 1 40%;
+}
+
 .search-view-container{
   position: fixed;
   top: 0;
@@ -50,4 +59,8 @@ button.fab-btn{
   margin-top: 56px;
   margin-bottom: 0px;
   z-index: 10;
+}
+
+.row.three.columns > * {
+  flex: 1 1 33%;
 }

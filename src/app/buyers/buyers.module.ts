@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
   entryComponents: [],
@@ -43,6 +44,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatInputModule,
     FormsModule,
     ScrollingModule,
+    LayoutModule
   ],
 })
 export class BuyersModule { }
