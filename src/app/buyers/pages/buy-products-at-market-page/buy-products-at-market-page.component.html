@@ -44,8 +44,8 @@
 </div>
 
 <div class="container" *ngIf="currentLayout === 'mobile'">
-  <div fxLayout="row wrap" fxLayoutGap="10px">
-    <app-products-product-card *ngFor="let product of products" [product]="product">
+  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutGap="10px" fxLayoutGap.gt-xs="10px grid">
+    <app-products-product-card fxFlex="calc(50% - 10px)" *ngFor="let product of products" [product]="product">
       <div class="w100" card-actions>
         <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
       </div>
@@ -88,27 +88,27 @@
 
 <div fxLayout="row" fxLayoutGap="10px" *ngIf="currentLayout === 'web'">
   
-  <div class="container" fxFlex="1 1 25%">
-    <h2>Categoria</h2>
-    <mat-chip-list class="mat-chip-list-stacked" orientation="vertical" [multiple]="false">
+  <div class="container margin fill-body-height" fxFlex="1 1 25%">
+    <h2>Categorias</h2>
+    <mat-chip-list class="mat-chip-list-stacked relative" orientation="vertical" [multiple]="false">
       <mat-chip *ngFor="let category of availableCategories" color="accent" (click)="setSelectedCategory(category)"
         [selected]="category.selected" selectable="true">{{category.name}}</mat-chip>
     </mat-chip-list>
   </div>
  
   
-  <div class="container" fxFlex="1 1 50%" >
+  <div class="container margin fill-body-height overflow-hidden" fxFlex="1 1 50%" >
     <h2>Exibindo {{selectedCategory.name}}</h2>
-    <div fxLayout="row wrap" fxLayoutGap="10px">
-      <app-products-product-card *ngFor="let product of products" [product]="product">
-        <div class="w100" card-actions>
+    <div style="padding-bottom: 32px" class="overflow fill-parent-height" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
+      <app-products-product-card fxFlex="calc(50% - 10px)" fxFlex.xl="calc(33.999% - 10px)" *ngFor="let product of products" [product]="product">
+        <div  card-actions>
           <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
         </div>
       </app-products-product-card>
     </div>
   </div>
  
-  <div class="container" fxFlex="1 1 25%">
+  <div class="container margin fill-body-height" fxFlex="1 1 25%">
     <h2>Carrinho</h2>
     <div fxLayout="column">
       Seu carrinho está vazio

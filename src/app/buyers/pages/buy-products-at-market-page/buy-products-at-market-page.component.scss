@@ -1,22 +1,35 @@
+$toolbarheight-small-screen: 56px;
+$toolbar-height-large-screen: 64px;
+$toolbar-breakpoint: 600px;
+$margin-bottom: var(--margin);
+$margin-top: var(--margin);
+
+
 :host{
-  padding-top: 56px;
+  padding-top: $toolbarheight-small-screen;
   display: block;
   background-color: whitesmoke;
   position: relative;
 }
 
-app-products-product-card{
-  flex: 1 1 25%;
-  margin: 8px 0;
+@media screen and (min-width: $toolbar-breakpoint){
+  :host{
+    padding-top: $toolbar-height-large-screen;
+  }
 }
 
 mat-toolbar[position="fixed"] {
   position: fixed;
   top: 0;
   z-index: 10;
-  height: 56px;
+  height: $toolbarheight-small-screen;
 }
 
+@media screen and (min-width: $toolbar-breakpoint){
+  mat-toolbar[position="fixed"] {
+    height: $toolbar-height-large-screen;
+  }
+}
 *[position="sticky"] {
   position: sticky;
   top: 56px;
@@ -61,6 +74,20 @@ button.fab-btn{
   z-index: 10;
 }
 
-.row.three.columns > * {
-  flex: 1 1 33%;
+.fill-body-height{
+  height: calc(100vh - #{$toolbarheight-small-screen} - (#{$margin-bottom} + #{$margin-top}));
+}
+
+@media screen and (min-width: $toolbar-breakpoint){
+  .fill-body-height{
+    height: calc(100vh - #{$toolbar-height-large-screen} - (#{$margin-bottom} + #{$margin-top}));
+  }
+}
+
+.fill-parent-height{
+  height: 100%;
+}
+
+.overflow-hidden{
+  overflow: hidden;
 }
