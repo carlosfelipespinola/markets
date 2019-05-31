@@ -3,6 +3,30 @@
   margin: 0;
 }
 
+//custom scroll bar on desktop
+@media screen and (min-width: 1024px){
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(199, 199, 199); 
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(160, 160, 160); 
+  }
+}
+
+
 html, body {
   min-height: 100vh;
   height: auto;
@@ -19,37 +43,49 @@ button {
 }
 
 .margin-left{
-  margin-left: 8px;
+  margin-left: var(--margin);
 }
 
 .margin-right{
-  margin-right: 8px;
+  margin-right: var(--margin);
+}
+
+.margin{
+  margin: var(--margin);
+}
+
+.margin-top {
+  margin-top: var(--margin);
+}
+
+.margin-bottom {
+  margin-bottom: var(--margin);
 }
 
 .padding{
-  padding: 16px;
+  padding: var(--padding);
 }
 
 .padding-left{
-  padding-left: 16px;
+  padding-left: var(--padding);
 }
 
 .padding-right{
-  padding-right: 16px;
+  padding-right: var(--padding);
 }
 
 .padding-bottom{
-  padding-bottom: 16px;
+  padding-bottom: var(--padding);
 }
 
 .padding-top{
-  padding-top: 16px;
+  padding-top: var(--padding);
 }
 
 .container{
   background-color: white;
-  padding: 16px;
-  margin-bottom: 16px;
+  padding: var(--padding);
+  margin-bottom: var(--margin);
 }
 
 .overflow{
