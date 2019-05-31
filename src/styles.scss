@@ -10,6 +10,9 @@ html, body {
   position: relative;
 }
 
+.text-center{
+  text-align: center;
+}
 
 button {
   text-transform: uppercase;
@@ -49,32 +52,8 @@ button {
   margin-bottom: 16px;
 }
 
-.row{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.row.overflow{
-  width: 100%;
+.overflow{
   overflow: auto;
-  flex-wrap: nowrap;
-  padding-bottom: 16px;
-  margin-bottom: -16px;
-  
-  > * {
-    flex: 0 0 auto;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
-  margin-left: -8px;
-  margin-right: -8px;
-
-}
-
-.column{
-  display: flex;
-  flex-direction: column;
 }
 
 .spacer {

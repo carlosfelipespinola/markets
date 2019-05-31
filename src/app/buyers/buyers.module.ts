@@ -19,6 +19,7 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {LayoutModule} from '@angular/cdk/layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   entryComponents: [],
@@ -44,7 +45,8 @@ import {LayoutModule} from '@angular/cdk/layout';
     MatInputModule,
     FormsModule,
     ScrollingModule,
-    LayoutModule
+    LayoutModule,
+    FlexLayoutModule
   ],
 })
 export class BuyersModule { }

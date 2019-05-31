@@ -1,10 +1,10 @@
 <mat-card [class.mat-elevation-z0]="true">
   <mat-card-content>
-    <div class="row">
-      <div>
+    <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="5px" fxLayoutAlign="center center">
+      <div fxFlex="30">
         <img *ngIf="product.images.length > 0" [src]="product.images[0]">
       </div>
-      <div class="column">
+      <div fxFlex="calc(70% - 5px)" fxLayout="column" class="text-center">
         <mat-card-subtitle>{{product.name}}</mat-card-subtitle>
         <mat-card-title color="mat-primary">{{product.price | currency}}</mat-card-title>
       </div>
