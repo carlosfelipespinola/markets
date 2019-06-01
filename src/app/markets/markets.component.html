@@ -1,8 +1,19 @@
-<mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
+<mat-toolbar color="primary">
+  <button (click)="drawer.toggle()" mat-icon-button>
+    <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
+    <mat-icon *ngIf="drawer.opened">close</mat-icon>
+  </button>
+  <span>My App </span>
+</mat-toolbar>
+<mat-drawer-container class="example-container" hasBackdrop="false">
+  <mat-drawer #drawer mode="side">
     <div class="container">
       <div fxLayout="column">
-        <div fxFlex="100%" *ngFor="let routeUrl of routeUrls"> {{routeUrl.name}}  </div>
+        <div fxFlex="100%" *ngFor="let routeUrl of routeUrls">
+          <a routerLink="{{routeUrl.url}}" routerLinkActive="active">
+            {{routeUrl.name}}  
+          </a>
+        </div>
       </div>
     </div>
   </mat-drawer>

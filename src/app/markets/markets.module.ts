@@ -6,6 +6,10 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductsPageComponent } from './pages/products-page/products-page.component';
 import { OrdersPageComponent } from './pages/orders-page/orders-page.component';
 import { MarketsRoutingModule } from './markets.routing';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -13,7 +17,11 @@ import { MarketsRoutingModule } from './markets.routing';
   imports: [
     CommonModule,
     MatSidenavModule,
-    MarketsRoutingModule
+    MarketsRoutingModule,
+    MatToolbarModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatIconModule
   ],
   exports: []
 })
