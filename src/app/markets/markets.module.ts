@@ -10,10 +10,19 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateProductPageComponent } from './pages/create-product-page/create-product-page.component';
+import { UpdateProductPageComponent } from './pages/update-product-page/update-product-page.component';
 
 
 @NgModule({
-  declarations: [MarketsComponent, HomePageComponent, ProductsPageComponent, OrdersPageComponent],
+  declarations: [
+    MarketsComponent,
+    HomePageComponent,
+    ProductsPageComponent,
+    OrdersPageComponent,
+    CreateProductPageComponent,
+    UpdateProductPageComponent
+  ],
   imports: [
     CommonModule,
     MatSidenavModule,

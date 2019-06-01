@@ -3,7 +3,14 @@
 
 const root = { name: 'Supermercados', path: 'markets' };
 const home = { name: 'Inicio', path: 'home' };
-const products = { name: 'Produtos', path: 'products' };
+const products = {
+  name: 'Produtos',
+  path: 'products',
+  children: {
+    createProduct: { name: 'Cadastrar Produto', path: 'create-product', children: {} },
+    updateProduct: { name: 'Atualizar Produto', path: 'update-product/:product', children: {} }
+  }
+};
 
 export const marketRoutesPathHierarchy = {
   root: {
@@ -21,7 +28,18 @@ export const marketRoutesPathHierarchy = {
         name: products.name,
         path: products.path,
         fullPath: `/${root.path}/${products.path}`,
-        children: {}
+        children: {
+          createProductPage: {
+            name: products.children.createProduct.name,
+            path: products.children.createProduct.path,
+            fullPath: `/${root.path}/${products.path}/${products.children.createProduct.path}`
+          },
+          updateProductPage: {
+            name: products.children.updateProduct.name,
+            path: products.children.updateProduct.path,
+            fullPath: `/${root.path}/${products.path}/${products.children.updateProduct.path}`
+          },
+        }
       }
     }
   }

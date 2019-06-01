@@ -3,26 +3,26 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MarketsComponent } from './markets.component';
 import { ProductsPageComponent } from './pages/products-page/products-page.component';
 import { marketRoutesPathHierarchy } from './markets.routes.paths';
+import { CreateProductPageComponent } from './pages/create-product-page/create-product-page.component';
+import { UpdateProductPageComponent } from './pages/update-product-page/update-product-page.component';
 
-
-
-const marketHomeRoute: Route = {
-  path: marketRoutesPathHierarchy.root.children.homePage.path,
-  component: HomePageComponent 
-}
-
-const marketProductsRoute: Route = { 
-  path: marketRoutesPathHierarchy.root.children.productsPage.path,
-  component: ProductsPageComponent,
-};
+const marketsPath = marketRoutesPathHierarchy.root.path;
+const homePath = marketRoutesPathHierarchy.root.children.homePage.path;
+const productPath = marketRoutesPathHierarchy.root.children.productsPage.path;
+const createProductPath = marketRoutesPathHierarchy.root.children.productsPage
+.children.createProductPage.path;
+const updateProductPath = marketRoutesPathHierarchy.root.children.productsPage
+.children.updateProductPage.path;
 
 export const marketRoutes: Routes = [
   {
-    path: marketRoutesPathHierarchy.root.path,
+    path: marketsPath,
     component: MarketsComponent,
     children: [
-      marketHomeRoute,
-      marketProductsRoute
+      { path: homePath, component: HomePageComponent },
+      { path: productPath, component: ProductsPageComponent },
+      { path: productPath + '/' + createProductPath, component: CreateProductPageComponent },
+      { path: productPath + '/' + updateProductPath, component: UpdateProductPageComponent },
     ]
   },
 ];

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { marketRoutesPathHierarchy } from '../../markets.routes.paths';
 
 @Component({
   selector: 'app-products-page',
@@ -6,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products-page.component.scss']
 })
 export class ProductsPageComponent implements OnInit {
-
+  public createProductRoute = {
+    url: marketRoutesPathHierarchy.root.children.productsPage.children.createProductPage.fullPath,
+    name: marketRoutesPathHierarchy.root.children.productsPage.children.createProductPage.name
+  };
   constructor() { }
 
   ngOnInit() {
