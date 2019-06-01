@@ -1,6 +1,4 @@
-
-<!--MOBILE LAYOUT-->
-<mat-toolbar position="fixed" color="primary" *ngIf="currentLayout === 'mobile'">
+<mat-toolbar position="fixed" color="primary">
   <mat-toolbar-row>
     <button mat-icon-button (click)="setSearchingMode(false)">
       <mat-icon *ngIf="!searchingMode">arrow_back</mat-icon>
@@ -8,14 +6,11 @@
     </button>
     <span *ngIf="!searchingMode">{{market.tradeName}}</span>
     <span *ngIf="!searchingMode" class="spacer"></span>
-
-    <mat-form-field class="padding-bottom search-form-field" color="primary" appearance="standard"
-      *ngIf="searchingMode">
-      <input #searchInput [(ngModel)]="searchProductString" matInput placeholder="Buscar produtos" autocomplete="off"
-        style="font-size: 14px" (ngModelChange)="searchProductInputChangeListener()">
+    
+    <mat-form-field class="padding-bottom search-form-field" color="primary" appearance="standard" *ngIf="searchingMode">
+      <input #searchInput [(ngModel)]="searchProductString" matInput placeholder="Buscar produtos" autocomplete="off" style="font-size: 14px" (ngModelChange)="searchProductInputChangeListener()">
     </mat-form-field>
-    <button (click)="clearSearchProductString($event)"
-      *ngIf="searchProductString !== null && searchProductString.length > 0 && searchingMode" mat-button>Limpar</button>
+    <button (click)="clearSearchProductString($event)" *ngIf="searchProductString !== null && searchProductString.length > 0 && searchingMode" mat-button>Limpar</button>
 
     <button *ngIf="!searchingMode" mat-icon-button (click)="setSearchingMode(true)">
       <mat-icon>search</mat-icon>
@@ -23,29 +18,36 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="container" *ngIf="currentLayout === 'mobile'">
-  <div class="overflow padding-bottom" fxLayout="row nowrap" fxLayoutGap="10px">
-    <button fxFlex="0 0 auto" mat-stroked-button>Entrega: grátis</button>
-    <button fxFlex="0 0 auto" mat-stroked-button>5 estrelas</button>
-    <button fxFlex="0 0 auto" mat-stroked-button>Localização</button>
+<div class="container search-view-container" *ngIf="searchingMode">
+  <div class="column">
+    <h3 class="padding-bottom">Procurando por: {{searchProductString}}</h3>
   </div>
 </div>
 
-<div *ngIf="!searchingMode && currentLayout === 'mobile'" class="container" position="sticky" style="margin: 0; height: 65px">
-  <div class="overflow padding-bottom" fxLayout="row nowrap" fxLayoutGap="10px">
+<div class="container">
+  <div class="row overflow">
+    <button mat-stroked-button>Entrega: grátis</button>
+    <button mat-stroked-button>5 estrelas</button>
+    <button mat-stroked-button>Localização</button>
+  </div>
+</div>
+
+<div *ngIf="!searchingMode" class="container" position="sticky" style="margin: 0; height: 65px">
+  <div class="row overflow">
     <mat-chip-list [multiple]="false">
-      <div fxFlex="0 0 auto">
-        <mat-chip *ngFor="let category of availableCategories" color="accent" (click)="setSelectedCategory(category)"
-          [selected]="category.selected" selectable="true">{{category.name}}</mat-chip>
-      </div>
-      
+      <mat-chip
+        *ngFor="let category of availableCategories" 
+        color="accent"
+        (click)="setSelectedCategory(category)"
+        [selected]="category.selected"
+        selectable="true">{{category.name}}</mat-chip>
     </mat-chip-list>
   </div>
 </div>
 
-<div class="container" *ngIf="currentLayout === 'mobile'">
-  <div fxLayout="column" fxLayout.gt-xs="row wrap" fxLayoutGap="10px" fxLayoutGap.gt-xs="10px grid">
-    <app-products-product-card fxFlex="calc(50% - 10px)" *ngFor="let product of products" [product]="product">
+<div class="container">  
+  <div class="row">
+    <app-products-product-card *ngFor="let product of products" [product]="product">
       <div class="w100" card-actions>
         <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
       </div>
@@ -53,75 +55,9 @@
   </div>
 </div>
 
-<button class="fab-btn" mat-fab color="accent" *ngIf="currentLayout === 'mobile'">
-  <span class="badgeposition" matBadge="8" matBadgePosition="above before" matBadgeOverlap="true" matBadgeSize="medium"
-    matBadgeColor="primary"></span>
+
+
+<button class="fab-btn" mat-fab color="accent">
+  <span class="badgeposition" matBadge="8" matBadgePosition="above before" matBadgeOverlap="true" matBadgeSize="medium" matBadgeColor="primary"></span>
   <mat-icon>shopping_cart</mat-icon>
 </button>
-
-<!--END MOBILE LAYOUT-->
-
-
-<!--WEB LAYOUT-->
-<mat-toolbar position="fixed" color="primary" *ngIf="currentLayout === 'web'">
-  <mat-toolbar-row>
-    <div fxFlex="100%" fxLayout="row nowrap" fxLayoutGap="10px" fxLayoutAlign="space-between center">
-      <div fxFlex="1 1 30%">
-          <button mat-icon-button (click)="setSearchingMode(false)">
-          <mat-icon *ngIf="!searchingMode">arrow_back</mat-icon>
-          <mat-icon *ngIf="searchingMode">close</mat-icon>
-        </button>
-        <span>{{market.tradeName}}</span>
-      </div>
-      <div fxFlex="1 1 40%">
-        <mat-form-field class="padding-bottom w100 search-form-field" color="primary" appearance="standard">
-          <input #searchInput [(ngModel)]="searchProductString" matInput placeholder="Buscar produtos" autocomplete="off"
-            style="font-size: 14px" (focus)="setSearchingMode(true)" (ngModelChange)="searchProductInputChangeListener()">
-        </mat-form-field>
-      </div>
-      <div fxFlex="1 1 30%"></div>
-    </div>
-    
-
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<div fxLayout="row" fxLayoutGap="10px" *ngIf="currentLayout === 'web'">
-  
-  <div class="container margin fill-body-height" fxFlex="1 1 25%">
-    <h2>Categorias</h2>
-    <mat-chip-list class="mat-chip-list-stacked relative" orientation="vertical" [multiple]="false">
-      <mat-chip *ngFor="let category of availableCategories" color="accent" (click)="setSelectedCategory(category)"
-        [selected]="category.selected" selectable="true">{{category.name}}</mat-chip>
-    </mat-chip-list>
-  </div>
- 
-  
-  <div class="container margin fill-body-height overflow-hidden" fxFlex="1 1 50%" >
-    <h2>Exibindo {{selectedCategory.name}}</h2>
-    <div style="padding-bottom: 32px" class="overflow fill-parent-height" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
-      <app-products-product-card fxFlex="calc(50% - 10px)" fxFlex.xl="calc(33.999% - 10px)" *ngFor="let product of products" [product]="product">
-        <div  card-actions>
-          <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
-        </div>
-      </app-products-product-card>
-    </div>
-  </div>
- 
-  <div class="container margin fill-body-height" fxFlex="1 1 25%">
-    <h2>Carrinho</h2>
-    <div fxLayout="column">
-      Seu carrinho está vazio
-    </div>
-  </div>
-</div>
-
-<!--END WEB LAYOUT-->
-
-
-<!-- MOBILE AND WEB LAYOUT -->
-<div class="container search-view-container" *ngIf="searchingMode">
-  <div fxLayout="column">
-    <h3 class="padding-bottom">Procurando por: {{searchProductString}}</h3>
-  </div>
-</div>
