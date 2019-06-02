@@ -1,15 +1,18 @@
 export class MarketData{
-  public readonly tradeName: string;
-  public readonly rating: number;
+  public tradeName: string;
+  public rating: number;
+  public uid: string;
+  public email: string;
 
 
-  constructor(data: {tradeName?: string; rating?: string | number;}){
+  constructor(data: any) {
     this.tradeName = data.tradeName;
-    this.rating = typeof data.rating == 'number' ? data.rating : parseInt(data.rating);
+    this.rating = typeof data.rating === 'number' ? data.rating : parseInt(data.rating, 10);
+    this.uid = data.uid;
   }
 
-  get hasRating(){
-    return this.rating != NaN;
+  get hasRating() {
+    return this.rating !== NaN;
   }
 
 }

@@ -1,12 +1,19 @@
 <mat-card>
   <h1>{{appName}}</h1>
 
-  <mat-tab-group mat-stretch-tabs color="accent">
+  <mat-tab-group [selectedIndex]="selectedTabIndex" mat-stretch-tabs color="accent">
     <mat-tab label="Login">
-      <markets-auth-login-form (loginSuccess)="onLogin($event)"></markets-auth-login-form>
+      <div fxLayout="column" fxLayoutAlign="center center" style="height: 200px">
+        <button (click)="login()" class="w100" mat-flat-button color="accent">Fazer Login com Google</button>
+      </div>
     </mat-tab>
     <mat-tab label="Cadastro">
-      <markets-auth-login-form (loginSuccess)="onLogin($event)"></markets-auth-login-form>
+      <div class="container">
+        <app-select-register-mode [selectedMode]="registerMode"  (modeChange)="registerModeChange($event)"></app-select-register-mode>
+        <div class="margin-top w100">
+          <button class="w100" (click)="registerWithGoogle()" mat-flat-button color="accent"> Fazer login com Google </button>
+        </div>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </mat-card>

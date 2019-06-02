@@ -77,11 +77,11 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
   }
 
   public setSelectedCategory(category: any) {
-    this.availableCategories.forEach((candicateCategory) => {
-      if (candicateCategory.name === category.name ) {
-        candicateCategory.selected = true;
+    this.availableCategories.forEach((candidateCategory) => {
+      if (candidateCategory.name === category.name ) {
+        candidateCategory.selected = true;
       } else {
-        candicateCategory.selected = false;
+        candidateCategory.selected = false;
       }
     });
   }

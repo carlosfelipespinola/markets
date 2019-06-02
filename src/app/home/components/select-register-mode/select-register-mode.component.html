@@ -1,0 +1,11 @@
+
+<h4><b>Realizar cadastro como</b></h4>
+<mat-chip-list [multiple]="false">
+  <mat-chip 
+  *ngFor="let mode of availableRegisterModes"
+  color="primary"
+  [selected]="mode.name === selectedMode"
+  selectable="true"
+  (click)="setSelectedMode(mode)"
+  >{{mode.name}}</mat-chip>
+</mat-chip-list>

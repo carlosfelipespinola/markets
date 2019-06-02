@@ -9,6 +9,8 @@ import { HomeModule } from './home/home.module';
 import { BuyersModule } from './buyers/buyers.module';
 
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCZLMZthXxXiUMhRuIO1RA_JvHrarezlHg',
@@ -29,6 +31,8 @@ const firebaseConfig = {
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     HomeModule,
     BuyersModule,
   ],
