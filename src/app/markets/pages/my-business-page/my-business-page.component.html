@@ -1,0 +1,56 @@
+<div class="container">
+  <form #form="ngForm" (submit)="formSubmmited()">
+    
+    <div fxLayout="column">
+      <h2>Dados empresáriais</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>Nome Fantasia</mat-label>
+        <input matInput [(ngModel)]="myBusiness.tradeName" name="tradeName">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Razão Social</mat-label>
+        <input matInput [(ngModel)]="myBusiness.companyName" name="companyName">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>CNPJ</mat-label>
+        <input matInput [(ngModel)]="myBusiness.companyNumberId" name="companyNumberid">
+      </mat-form-field>
+    </div>
+    
+    <div fxLayout="column">
+      <h2>Endereço</h2>
+      <mat-form-field appearance="outline">
+        <mat-label>CEP</mat-label>
+        <input matInput [(ngModel)]="myBusiness.address.zipCode" name="zipCode">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>País</mat-label>
+        <input matInput [(ngModel)]="myBusiness.address.country" name="country">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+        <input matInput [(ngModel)]="myBusiness.address.state" name="state">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Cidade</mat-label>
+        <input matInput [(ngModel)]="myBusiness.address.city" name="city">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Endereço</mat-label>
+        <input matInput [(ngModel)]="myBusiness.address.address" name="address">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Complemento</mat-label>
+        <input matInput [(ngModel)]="myBusiness.address.addOnAdress" name="addressAddOn">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+      <button mat-flat-button color="accent">Salvar alterações</button>
+    </div>
+
+    
+  </form>
+</div>

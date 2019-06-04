@@ -3,9 +3,9 @@ import { UserData } from '../../users/data_classes/UserData';
 import { Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { auth, User } from 'firebase';
 import { UserService } from 'src/app/users/services/user.service';
+import * as firebase from 'firebase/app';
 
 
 @Injectable({
@@ -36,7 +36,9 @@ export class GoogleAuthService {
 
   public async signIn(): Promise<auth.UserCredential> {
     const provider = new auth.GoogleAuthProvider();
-    return this.firebaseAuth.auth.signInWithPopup(provider);
+    await this.firebaseAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    const credentials = await this.firebaseAuth.auth.signInWithPopup(provider);
+    return credentials;
   }
 
   public async signOut() {

@@ -11,6 +11,7 @@ const products = {
     updateProduct: { name: 'Atualizar Produto', path: 'update-product/:product', children: {} }
   }
 };
+const myBusiness = { name: 'Meu estabelecimento', path: 'my-businness' };
 
 export const marketRoutesPathHierarchy = {
   root: {
@@ -40,6 +41,12 @@ export const marketRoutesPathHierarchy = {
             fullPath: `/${root.path}/${products.path}/${products.children.updateProduct.path}`
           },
         }
+      },
+      myBusinessPage: {
+        name: myBusiness.name,
+        path: myBusiness.path,
+        fullPath: `/${root.path}/${myBusiness.path}`,
+        children: {}
       }
     }
   }
