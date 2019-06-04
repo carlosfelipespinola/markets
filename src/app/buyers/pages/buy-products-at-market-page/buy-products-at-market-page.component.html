@@ -47,11 +47,14 @@
 
 <div class="container">  
   <div class="row">
-    <app-products-product-card *ngFor="let product of products" [product]="product">
+    <app-one-by-two-card *ngFor="let product of products">
+      <div card-title>{{product.name}}</div>
+      <div card-subtitle>{{product.price | currency}}</div>
+      <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
       <div class="w100" card-actions>
         <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
       </div>
-    </app-products-product-card>
+    </app-one-by-two-card>
   </div>
 </div>
 

@@ -2,11 +2,15 @@
   <mat-card-content>
     <div fxFlex="100" fxLayout="row wrap" fxLayoutGap="5px" fxLayoutAlign="center center">
       <div fxFlex="30">
-        <img *ngIf="product.images.length > 0" [src]="product.images[0]">
+        <ng-content select="[card-img]"></ng-content>
       </div>
       <div fxFlex="calc(70% - 5px)" fxLayout="column" class="text-center">
-        <mat-card-subtitle>{{product.name}}</mat-card-subtitle>
-        <mat-card-title color="mat-primary">{{product.price | currency}}</mat-card-title>
+        <mat-card-subtitle>
+          <ng-content select="[card-subtitle]"></ng-content>
+        </mat-card-subtitle>
+        <mat-card-title color="mat-primary">
+          <ng-content select="[card-title]"></ng-content>
+        </mat-card-title>
       </div>
     </div>
   </mat-card-content>
