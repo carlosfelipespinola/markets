@@ -4,6 +4,8 @@ import { ProductData } from 'src/app/products/data-classes/product-data';
 import { HostListener } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { GoogleAuthService } from 'src/app/auth/services/google-auth.service';
+import { HomeNavigationService } from 'src/app/home/services/home-navigation.service';
 
 @Component({
   selector: 'app-buy-products-at-market-page',
@@ -34,7 +36,12 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
   ];
   public currentLayout: 'mobile' | 'web' = 'mobile';
 
-  constructor(@Inject(DOCUMENT) private document: any, breakPointObserver: BreakpointObserver) {
+  constructor(
+    @Inject(DOCUMENT) private document: any,
+    breakPointObserver: BreakpointObserver,
+    private googleAuthService: GoogleAuthService,
+    private homeNavigationService: HomeNavigationService
+  ) {
     breakPointObserver.observe([Breakpoints.Tablet, Breakpoints.Handset]).subscribe((result) => {
       if(result.matches) {
         this.currentLayout = 'mobile';
@@ -88,5 +95,10 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
 
   get selectedCategory() {
     return this.availableCategories.find(x => x.selected === true);
+  }
+
+  public async logOut() {
+    await this.googleAuthService.signOut();
+    this.homeNavigationService.navigateToHomePage();
   }
 }
