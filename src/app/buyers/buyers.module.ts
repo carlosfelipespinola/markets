@@ -9,8 +9,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { BuyProductsAtMarketPageComponent } from './pages/buy-products-at-market-page/buy-products-at-market-page.component';
 import { ProductsModule } from '../products/products.module';
-import { BuyersHomePageBottomSheetComponentModule } from './components/buyers-home-page-bottom-sheet/buyers-home-page-bottom-sheet.module';
-import { ListOfMarketsComponentModule } from '../markets/components/list-of-markets/list-of-markets.module';
 import { ProductCardComponentModule } from '../products/components/product-card/product-card-component.module';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -20,6 +18,9 @@ import { FormsModule } from '@angular/forms';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {LayoutModule} from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatListModule } from '@angular/material/list';
+import { StarRatingModule } from '../ui/star-rating/star-rating.module';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   entryComponents: [],
@@ -36,8 +37,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatBottomSheetModule,
     ProductsModule,
-    BuyersHomePageBottomSheetComponentModule,
-    ListOfMarketsComponentModule,
     ProductCardComponentModule,
     MatChipsModule,
     MatBadgeModule,
@@ -46,7 +45,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     ScrollingModule,
     LayoutModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatListModule,
+    StarRatingModule,
+    MatRippleModule
   ],
 })
 export class BuyersModule { }
