@@ -5,8 +5,20 @@
     </div>
     <div></div>
     <div>
-      <button [routerLink]="createProductRoute.url" mat-flat-button color="accent">Cadastrar Novo Produto</button>
+      <button (click)="marketNavigationService.toCreateProductPage()" mat-flat-button color="accent">Cadastrar Novo Produto</button>
     </div>
+  </div>
+
+  <div *ngIf="products.length > 0" fxLayout="column" fxLayout.gt-sm="row"fxLayoutGap="10px">
+    <app-one-by-two-card fxFlex="100%" fxFlex.gt-sm="calc(50% - 10px)" fxFlex.gt-md="calc(33.333% - 10px)" *ngFor="let product of products">
+      <div card-title>{{product.name || 'sem titulo'}}</div>
+      <div card-subtitle>{{(product.price || 0) | currency}}</div>
+      <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
+      <div fxLayout="row" fxLayoutAlign="end center" class="w100" card-actions>
+        <button mat-button color="warn">Excluir</button>
+        <button mat-button color="primary">Editar</button>
+      </div>
+    </app-one-by-two-card>
   </div>
 </div>
 

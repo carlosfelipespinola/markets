@@ -1,0 +1,38 @@
+
+<div fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="column">
+    <h2>Dados do produto</h2>
+
+    <div  fxFlexAlign="center">
+      <app-image-uploader-input (uploadedImage)="uploadedImage($event)" class="margin-bottom"></app-image-uploader-input>
+    </div>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Titulo</mat-label>
+      <input matInput [(ngModel)]="product.name" name="name">
+    </mat-form-field>
+
+    <div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap.gt-md="10px">
+      <mat-form-field fxFlex="calc(50% - 10)" appearance="outline">
+        <mat-label>Preço</mat-label>
+        <input matInput type="number" [(ngModel)]="product.price" name="price">
+      </mat-form-field>
+
+      <mat-form-field fxFlex="calc(50% - 10)" appearance="outline">
+        <mat-label>Preço Promocional</mat-label>
+        <input matInput type="number" [(ngModel)]="product.salePrice" name="salePrice">
+      </mat-form-field>
+    </div>
+    
+  </div>
+  <div>
+    <h2>Status</h2>
+    <mat-radio-group [(ngModel)]="status" fxLayout="column" fxLayoutGap="10px" aria-label="Select an option">
+      <mat-radio-button value="1">Em estoque</mat-radio-button>
+      <mat-radio-button value="0">Fora de estoque</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="margin-top">
+    <button [disabled]="updatingProduct" class="w100" mat-flat-button color="primary" (click)="formSubmited()">Publicar</button>
+  </div>
+</div>

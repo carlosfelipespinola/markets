@@ -17,6 +17,11 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { ProductFormComponent } from './forms/product-form/product-form.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { InputModule } from '../input/input.module';
+import { CardsModule } from '../ui/cards/cards.module';
 
 
 @NgModule({
@@ -27,7 +32,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     OrdersPageComponent,
     CreateProductPageComponent,
     UpdateProductPageComponent,
-    MyBusinessPageComponent
+    MyBusinessPageComponent,
+    ProductFormComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +46,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    MatRadioModule,
+    InputModule,
+    CardsModule
   ],
   exports: []
 })

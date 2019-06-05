@@ -1,0 +1,19 @@
+<mat-card mat-ripple (click)="fileInput.click()" [style.width]="cardSize" [style.height]="cardSize">
+ 
+  <img *ngIf="imgUrl || imgSrc" [src]="imgUrl || imgSrc" />
+  <mat-card-content *ngIf="!imgSrc && !imgUrl">
+    <mat-icon [style.font-size]="fontSize">add_photo_alternate</mat-icon>
+  </mat-card-content>
+  <div *ngIf="percentage <= 99 && percentage !== null" class="spinner-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <mat-progress-spinner
+      color="primary"
+      mode="determinate"
+      [value]="percentage">
+    </mat-progress-spinner>
+  </div>
+</mat-card>
+
+<input
+  style="display: none"
+  type="file" (change)="onFileChanged($event)"
+  #fileInput>
