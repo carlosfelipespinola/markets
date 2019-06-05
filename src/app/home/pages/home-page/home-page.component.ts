@@ -1,5 +1,6 @@
+import { GOOGLE_SIGN_IN_BUTTON_ASSET2X, DEFAULT_LOGO, LOGO_HORIZONTAL } from './../../../app.consts';
 import { Component, OnInit } from '@angular/core';
-import { APP_NAME } from 'src/app/app.consts';
+import { APP_NAME, GOOGLE_SIGN_IN_BUTTON_ASSET } from 'src/app/app.consts';
 import { Router } from '@angular/router';
 import { buyersHomePage, buyersRoutes } from 'src/app/buyers/buyers.routes';
 import { REGISTER_AS_MARKET, REGISTER_AS_BUYER } from '../../components/select-register-mode/modes.consts';
@@ -21,6 +22,9 @@ export class HomePageComponent implements OnInit {
   public registerMode = REGISTER_AS_MARKET;
   private readonly tabsIndexes = { login: 0, register: 1 };
   public selectedTabIndex = this.tabsIndexes.login;
+  public googleSignInButtonImage = GOOGLE_SIGN_IN_BUTTON_ASSET;
+  public googleSignInButtonImage2x = GOOGLE_SIGN_IN_BUTTON_ASSET2X;
+  public logo = LOGO_HORIZONTAL;
   constructor(
     private router: Router,
     private readonly googleAuthService: GoogleAuthService,
