@@ -47,6 +47,7 @@ export class MarketData implements IMarketData {
   public companyNumberId: string;
   public address: Address;
   public rating: number;
+  public uid: string;
 
   constructor(data?: IMarketData | any) {
 

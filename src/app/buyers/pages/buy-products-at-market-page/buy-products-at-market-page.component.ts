@@ -1,3 +1,5 @@
+import { ProductService } from 'src/app/products/services/product.service';
+import { MarketService } from './../../../markets/services/market.service';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Inject, AfterViewInit } from '@angular/core';
 import { MarketData } from 'src/app/markets/data_classes/MarketData';
 import { ProductData } from 'src/app/products/data-classes/product-data';
@@ -6,6 +8,7 @@ import { DOCUMENT } from '@angular/common';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { GoogleAuthService } from 'src/app/auth/services/google-auth.service';
 import { HomeNavigationService } from 'src/app/home/services/home-navigation.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-buy-products-at-market-page',
@@ -14,17 +17,23 @@ import { HomeNavigationService } from 'src/app/home/services/home-navigation.ser
 })
 export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  public products: Array<ProductData> = [
-    new ProductData({name: "Coca cola 2 litros", price: "7.50", images: ["https://static.carrefour.com.br/medias/sys_master/images/images/hab/h59/h00/h00/9494639018014.jpg"]}),
-    new ProductData({name: "Dirtos 70g", price: "5.00", images: ["https://static.carrefour.com.br/medias/sys_master/images/images/h75/hab/h00/h00/12209269833758.jpg"]}),
-    new ProductData({name: "Nissin miojo legumes 200g", price: "1.99", images: ["https://www.paodeacucar.com/img/uploads/1/774/604774.png?type=product"]}),
-    new ProductData({name: "Biscoito Oreo Original 144g - Mondelez", price: "9.99", images: ["https://images-americanas.b2w.io/produtos/01/00/item/19549/3/19549316_1GG.jpg"]}),
-    new ProductData({name: "Pizza Sadia Frango com Catupiry e Mussarela", price: "17.00", images: ["https://www.paodeacucar.com/img/uploads/1/862/540862.jpg?type=product"]}),
-    new ProductData({name: "Guraná Antartica Lata", price: "2.99", images: ["https://static.carrefour.com.br/medias/sys_master/images/images/h49/he7/h00/h00/9295715598366.jpg"]}),
-  ];
+  public products: Array<ProductData> = [];
+  public productsFilteredByCategory: Array<ProductData> = [];
+  public productsFilteredBySearch: Array<ProductData> = [];
   public market: MarketData;
   public searchingMode = false;
-  public searchProductString: string = null;
+  private _searchProductString: string = null;
+  set searchProductString(value: string) {
+    this._searchProductString = value;
+    this.productsFilteredBySearch = this.products.filter((product) => {
+      if(product.name.toLowerCase().includes(this.searchProductString.toLowerCase())){
+        return product;
+      }
+    })
+  }
+  get searchProductString() {
+    return this._searchProductString;
+  }
   @ViewChild('searchInput')
   public searchInput: ElementRef<HTMLInputElement>;
   private defaultBodyOverflowStyle = null;
@@ -40,7 +49,10 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
     @Inject(DOCUMENT) private document: any,
     breakPointObserver: BreakpointObserver,
     private googleAuthService: GoogleAuthService,
-    private homeNavigationService: HomeNavigationService
+    private homeNavigationService: HomeNavigationService,
+    private marketService: MarketService,
+    private productService: ProductService,
+    private activatedRoute: ActivatedRoute
   ) {
     breakPointObserver.observe([Breakpoints.Tablet, Breakpoints.Handset]).subscribe((result) => {
       if(result.matches) {
@@ -49,10 +61,20 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
         this.currentLayout = 'web';
       }
     });
+    this.market = new MarketData();
   }
 
   ngOnInit() {
-    this.market = new MarketData({tradeName: 'Supermercado criméia'});
+    const marketUid = this.activatedRoute.snapshot.params.market;
+    this.marketService.getMarketById(marketUid).subscribe((market) => {
+      this.market = market;
+      this.productService.getProducts(this.market.uid).subscribe((products) => {
+        this.products = products;
+        this.productsFilteredByCategory = products;
+        this.productsFilteredBySearch = products;
+      })
+    });
+    
   }
 
   ngAfterViewInit() {

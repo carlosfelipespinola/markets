@@ -9,8 +9,8 @@ export class NavigationService {
 
   constructor(private router: Router) { }
 
-  public toBuyProductsAtMarketPage(marketId: number) {
-    const route = buyersBuyProductAtMarketPageRoutePath.replace(':id', marketId.toString());
+  public toBuyProductsAtMarketPage(marketId: string) {
+    const route = buyersBuyProductAtMarketPageRoutePath.replace(':market', marketId);
     this.router.navigate([route]);
   }
 }

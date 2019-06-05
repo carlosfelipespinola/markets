@@ -1,3 +1,4 @@
+import { MarketService } from './../../../markets/services/market.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MarketData } from 'src/app/markets/data_classes/MarketData';
 import { NavigationService } from '../../services/navigation.service';
@@ -17,11 +18,18 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ];
 
   constructor(
-    private buyersNavigationService: NavigationService
+    private buyersNavigationService: NavigationService,
+    private marketService: MarketService
   ) { }
 
   ngOnInit() {
-    
+    this.marketService.getMarkets().subscribe((markets) => {
+      console.log(markets);
+      this.marketsFound = markets;
+    }, (error) => {
+      console.log(error);
+      // TODO show error message
+    })
   }
 
   ngOnDestroy() {
@@ -29,8 +37,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   public onMarketClick(market: MarketData) {
-    const id = 123;
-    this.buyersNavigationService.toBuyProductsAtMarketPage(id);
+    this.buyersNavigationService.toBuyProductsAtMarketPage(market.uid);
   }
 
 }

@@ -8,7 +8,7 @@
     <span *ngIf="!searchingMode" class="spacer"></span>
     
     <mat-form-field class="padding-bottom search-form-field" color="primary" appearance="standard" *ngIf="searchingMode">
-      <input #searchInput [(ngModel)]="searchProductString" matInput placeholder="Buscar produtos" autocomplete="off" style="font-size: 14px" (ngModelChange)="searchProductInputChangeListener()">
+      <input #searchInput [(ngModel)]="searchProductString" matInput placeholder="Buscar produtos" autocomplete="off" style="font-size: 14px">
     </mat-form-field>
     <button (click)="clearSearchProductString($event)" *ngIf="searchProductString !== null && searchProductString.length > 0 && searchingMode" mat-button>Limpar</button>
 
@@ -42,7 +42,7 @@
 
 <div class="container" *ngIf="currentLayout === 'mobile'">  
   <div class="row">
-      <app-one-by-two-card *ngFor="let product of products">
+      <app-one-by-two-card *ngFor="let product of productsFilteredByCategory">
         <div card-title>{{product.name}}</div>
         <div card-subtitle>{{product.price | currency}}</div>
         <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
@@ -74,7 +74,7 @@
       <div style="flex: 1 1 40%; position: relative" class="margin-left margin-right">
         <mat-form-field class="padding-bottom w100 search-form-field" color="primary" appearance="standard">
           <input #searchInput [(ngModel)]="searchProductString" matInput placeholder="Buscar produtos" autocomplete="off"
-            style="font-size: 14px" (focus)="setSearchingMode(true)" (ngModelChange)="searchProductInputChangeListener()">
+            style="font-size: 14px" (focus)="setSearchingMode(true)">
         </mat-form-field>
       </div>
   
@@ -93,10 +93,10 @@
           [selected]="category.selected" selectable="true">{{category.name}}</mat-chip>
       </mat-chip-list>
     </div>
-    <div class="container margin-top margin-bottom fill-body-height overflow-hidden" fxFlex="50%; text-align: center">
+    <div class="container w100 margin-top margin-bottom fill-body-height overflow-hidden" fxFlex="50%; text-align: center">
       <h2>Exibindo {{selectedCategory.name}}</h2>
-      <div style="padding-bottom: 32px" class="overflow fill-parent-height" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
-        <app-one-by-two-card fxFlex="calc(50% - 10px)" fxFlex.xl="calc(33.999% - 10px)" *ngFor="let product of products">
+      <div style="padding-bottom: 32px" class="overflow fill-parent-height w100" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
+        <app-one-by-two-card fxFlex="calc(50% - 10px)" fxFlex.xl="calc(33.999% - 10px)" *ngFor="let product of productsFilteredByCategory">
           <div card-title>{{product.name}}</div>
           <div card-subtitle>{{product.price | currency}}</div>
           <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
@@ -122,5 +122,15 @@
   <div class="container search-view-container" *ngIf="searchingMode">
     <div class="column">
       <h3 class="padding-bottom">Procurando por: {{searchProductString}}</h3>
+      <div fxLayout="column" fxLayoutGap="10px" fxLayout.gt-md="row wrap" fxLayoutAlign.gt-md="start start" fxLayoutGap.gt-md="10px grid">
+        <app-one-by-two-card fxFlex="calc(100% - 10px)" fxFlex.gt-md="calc(33.999% - 10px)" *ngFor="let product of productsFilteredBySearch">
+          <div card-title>{{product.name}}</div>
+          <div card-subtitle>{{product.price | currency}}</div>
+          <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
+          <div class="w100" card-actions>
+            <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
+          </div>
+        </app-one-by-two-card>
+      </div>
     </div>
   </div>
