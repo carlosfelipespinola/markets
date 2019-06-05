@@ -25,6 +25,7 @@ export class ImageUploaderInputComponent implements OnInit, OnDestroy {
   public fontSize: string;
 
   public imgSrc: any;
+  @Input('img')
   public imgUrl: string;
 
   constructor(private firestorage: AngularFireStorage) {

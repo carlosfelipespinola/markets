@@ -56,7 +56,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   public async uploadedImage(imageUrl: string) {
     try {
       this.updatingProduct = true;
-      this.product.images.push(imageUrl);
+      this.product.images.unshift(imageUrl);
       this.product.uid = await this.productService.updateProduct(this.marketOwnerId, this.product );
       this.updatingProduct = false;
     } catch (error) {

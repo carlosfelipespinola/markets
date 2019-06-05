@@ -4,7 +4,7 @@
     <h2>Dados do produto</h2>
 
     <div  fxFlexAlign="center">
-      <app-image-uploader-input (uploadedImage)="uploadedImage($event)" class="margin-bottom"></app-image-uploader-input>
+      <app-image-uploader-input [img]="product.images[0]" (uploadedImage)="uploadedImage($event)" class="margin-bottom"></app-image-uploader-input>
     </div>
     
     <mat-form-field appearance="outline">

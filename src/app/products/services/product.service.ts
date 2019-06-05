@@ -26,6 +26,14 @@ export class ProductService {
     return product.uid;
   }
 
+  public getProductById(marketOwnerId: string, productId: string): Observable<ProductData> {
+    return this.afs.doc(`${this.collection(marketOwnerId)}/${productId}`).get().pipe(
+      map((ref) => {
+        return new ProductData(ref.data())
+      })
+    )
+  }
+
   public getProducts(marketOwnerId: string): Observable<ProductData[]> {
     return this.afs.collection(this.collection(marketOwnerId)).get().pipe(
       map((value) => {
