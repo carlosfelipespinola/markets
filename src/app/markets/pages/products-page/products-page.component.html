@@ -15,7 +15,7 @@
       <div card-subtitle>{{(product.price || 0) | currency}}</div>
       <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
       <div fxLayout="row" fxLayoutAlign="end center" class="w100" card-actions>
-        <button mat-button color="warn">Excluir</button>
+        <button #deleteBtn (click)="deleteProduct(product, deleteBtn)" mat-button color="warn">Excluir</button>
         <button (click)="marketNavigationService.toEditProductPage(product.uid)" mat-button color="primary">Editar</button>
       </div>
     </app-one-by-two-card>

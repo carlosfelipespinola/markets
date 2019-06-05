@@ -34,6 +34,10 @@ export class ProductService {
     )
   }
 
+  public async deleteProductById(marketOwnerId: string, productId: string) {
+    await this.afs.doc(`${this.collection(marketOwnerId)}/${productId}`).delete()
+  }
+
   public getProducts(marketOwnerId: string): Observable<ProductData[]> {
     return this.afs.collection(this.collection(marketOwnerId)).get().pipe(
       map((value) => {
@@ -45,5 +49,13 @@ export class ProductService {
         });
       })
     );
+  }
+
+  public watchProducts(marketOwnerId: string) {
+    return this.afs.collection<ProductData>(this.collection(marketOwnerId)).snapshotChanges().pipe(
+      map((docs) => {
+        return docs.map((doc) => doc.payload.doc.data());
+      })
+    )
   }
 }

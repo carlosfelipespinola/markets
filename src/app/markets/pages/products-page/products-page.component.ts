@@ -5,6 +5,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { marketRoutesPathHierarchy } from '../../markets.routes.paths';
 import { ProductService } from 'src/app/products/services/product.service';
 import { ProductData } from 'src/app/products/data-classes/product-data';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-products-page',
@@ -13,6 +14,7 @@ import { ProductData } from 'src/app/products/data-classes/product-data';
 })
 export class ProductsPageComponent implements OnInit, OnDestroy {
   public products: Array<ProductData> = [];
+  public marketOwnerId: string;
   private authenticatedUserSubscription: Subscription = null;
   private getProductSubscriptions: Subscription = null;
   constructor(
@@ -23,7 +25,8 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.googleAuthService.authenticatedUser.subscribe((user) => {
-      this.productService.getProducts(user.uid).subscribe((products) => {
+      this.marketOwnerId = user.uid;
+      this.getProductSubscriptions = this.productService.watchProducts(this.marketOwnerId).subscribe((products) => {
         this.products = products || [];
       })
     });
@@ -37,6 +40,15 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     if (this.getProductSubscriptions) {
       this.getProductSubscriptions.unsubscribe();
     }
+  }
+
+  public async deleteProduct(product: ProductData, buttonClicked: MatButton) {
+    if (!this.marketOwnerId) {
+      return;
+    }
+    buttonClicked.disabled = true;
+    await this.productService.deleteProductById(this.marketOwnerId, product.uid);
+    buttonClicked.disabled = false;
   }
 
 }

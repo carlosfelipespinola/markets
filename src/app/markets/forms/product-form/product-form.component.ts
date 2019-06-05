@@ -45,7 +45,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       this.updatingProduct = true;
       this.product.isAvailable = this.statusToBoolean();
       await this.productService.updateProduct(this.marketOwnerId, this.product);
-      this.updatingProduct = true;
+      this.updatingProduct = false;
     } catch (error) {
       // TODO show error
     }
