@@ -7,9 +7,9 @@
     <span *ngIf="!searchingMode">{{market.tradeName}}</span>
     <span *ngIf="!searchingMode" class="spacer"></span>
     
-    <mat-form-field class="padding-bottom search-form-field" color="primary" appearance="standard" *ngIf="searchingMode">
-      <input #searchInput [(ngModel)]="searchProductString" matInput placeholder="Buscar produtos" autocomplete="off" style="font-size: 14px">
-    </mat-form-field>
+    
+    <input #searchInput class="search-mobile" *ngIf="searchingMode" [(ngModel)]="searchProductString" placeholder="Buscar produtos" autocomplete="off" style="font-size: 14px">
+
     <button (click)="clearSearchProductString($event)" *ngIf="searchProductString !== null && searchProductString.length > 0 && searchingMode" mat-button>Limpar</button>
 
     <button *ngIf="!searchingMode" mat-icon-button (click)="setSearchingMode(true)">
