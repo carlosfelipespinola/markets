@@ -2,15 +2,14 @@ import { GOOGLE_SIGN_IN_BUTTON_ASSET2X, DEFAULT_LOGO, LOGO_HORIZONTAL } from './
 import { Component, OnInit } from '@angular/core';
 import { APP_NAME, GOOGLE_SIGN_IN_BUTTON_ASSET } from 'src/app/app.consts';
 import { Router } from '@angular/router';
-import { buyersHomePage, buyersRoutes } from 'src/app/buyers/buyers.routes';
 import { REGISTER_AS_MARKET, REGISTER_AS_BUYER } from '../../components/select-register-mode/modes.consts';
 import { GoogleAuthService } from 'src/app/auth/services/google-auth.service';
 import { UserService } from 'src/app/users/services/user.service';
 import { User } from 'firebase';
 import { UserData, UserRoles, IUserData } from 'src/app/users/data_classes/UserData';
 import { marketRoutesPathHierarchy } from 'src/app/markets/markets.routes.paths';
-import { buyersHomePageRoutePath } from 'src/app/buyers/buyers.routes.paths';
 import { MatSnackBar, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { NavigationService } from 'src/app/buyers/services/navigation.service';
 
 @Component({
   selector: 'app-home-page',
@@ -29,7 +28,8 @@ export class HomePageComponent implements OnInit {
     private router: Router,
     private readonly googleAuthService: GoogleAuthService,
     private readonly userServices: UserService,
-    private readonly snackbar: MatSnackBar
+    private readonly snackbar: MatSnackBar,
+    private readonly buyersNavigationService: NavigationService
   ) { }
 
   ngOnInit() {
@@ -60,7 +60,7 @@ export class HomePageComponent implements OnInit {
     if (user.role === UserRoles.MARKET_OWNER_ROLE) {
       this.router.navigate([marketRoutesPathHierarchy.root.children.homePage.fullPath]);
     } else {
-      this.router.navigate([buyersHomePageRoutePath]);
+      this.buyersNavigationService.toHome();
     }
   }
 
