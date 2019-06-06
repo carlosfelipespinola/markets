@@ -1,4 +1,4 @@
-<mat-toolbar position="fixed" color="primary" *ngIf="currentLayout === 'mobile'">
+<mat-toolbar fxShow="true" fxShow.gt-sm="false" position="fixed" color="primary">
   <mat-toolbar-row>
     <button mat-icon-button (click)="setSearchingMode(false)">
       <mat-icon *ngIf="!searchingMode">arrow_back</mat-icon>
@@ -8,7 +8,7 @@
     <span *ngIf="!searchingMode" class="spacer"></span>
     
     
-    <input #searchInput class="search-mobile" *ngIf="searchingMode" [(ngModel)]="searchProductString" placeholder="Buscar produtos" autocomplete="off" style="font-size: 14px">
+    <input #searchInput class="search-mobile" *ngIf="searchingMode" [(ngModel)]="searchProductString" placeholder="Buscar produtos" autocomplete="off">
 
     <button (click)="clearSearchProductString($event)" *ngIf="searchProductString !== null && searchProductString.length > 0 && searchingMode" mat-button>Limpar</button>
 
@@ -19,7 +19,7 @@
 </mat-toolbar>
 
 
-<div class="container" *ngIf="currentLayout === 'mobile'">
+<div class="container" fxShow="true" fxShow.gt-sm="false">
   <div fxLayout="row nowrap" fxLayoutGap="10px" class="overflow padding-bottom">
     <button fxFlex="0 0 auto" mat-stroked-button>Entrega: grátis</button>
     <button fxFlex="0 0 auto" mat-stroked-button>5 estrelas</button>
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div *ngIf="!searchingMode && currentLayout === 'mobile'" class="container" position="sticky" style="margin: 0; height: 65px">
+<div *ngIf="!searchingMode" fxShow="true" fxShow.gt-sm="false" class="container" position="sticky" style="margin: 0; height: 65px">
   <mat-chip-list [multiple]="false">
     <div fxLayout="row nowrap" fxLayoutGap="10px" class="overflow padding-bottom">
       <mat-chip
@@ -41,7 +41,7 @@
   </mat-chip-list>
 </div>
 
-<div class="container" *ngIf="currentLayout === 'mobile'">  
+<div class="container" fxShow="true" fxShow.gt-sm="false">  
   <div class="row">
       <app-one-by-two-card *ngFor="let product of productsFilteredByCategory">
         <div card-title>{{product.name}}</div>
@@ -56,14 +56,14 @@
 
 
 
-<button class="fab-btn" mat-fab color="accent" *ngIf="currentLayout === 'mobile'">
+<button class="fab-btn" mat-fab color="accent" fxShow="true" fxShow.gt-sm="false">
   <span class="badgeposition" matBadge="8" matBadgePosition="above before" matBadgeOverlap="true" matBadgeSize="medium" matBadgeColor="primary"></span>
   <mat-icon>shopping_cart</mat-icon>
 </button>
 
 
 <!--WEB LAYOUT-->
-<mat-toolbar position="fixed" color="primary" *ngIf="currentLayout === 'web'">
+<mat-toolbar position="fixed" color="primary" fxHide="true" fxHide.gt-sm="false">
     <mat-toolbar-row>
       <div style="flex: 1 1 30%">
         <button mat-icon-button (click)="setSearchingMode(false)">
@@ -86,7 +86,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
   
-  <div fxLayout="row" fxLayoutGap="10px" *ngIf="currentLayout === 'web'">
+  <div fxLayout="row" fxLayoutGap="10px" fxHide="true" fxHide.gt-sm="false">
     <div class="container margin-top margin-bottomgit fill-body-height" fxFlex="25%">
       <h2>Categorias</h2>
       <mat-chip-list class="mat-chip-list-stacked relative" orientation="vertical" [multiple]="false">
