@@ -9,6 +9,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { GoogleAuthService } from 'src/app/auth/services/google-auth.service';
 import { HomeNavigationService } from 'src/app/home/services/home-navigation.service';
 import { ActivatedRoute } from '@angular/router';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'app-buy-products-at-market-page',
@@ -52,7 +53,8 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
     private homeNavigationService: HomeNavigationService,
     private marketService: MarketService,
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public buyersNavigationService: NavigationService
   ) {
     breakPointObserver.observe([Breakpoints.Tablet, Breakpoints.Handset]).subscribe((result) => {
       if(result.matches) {

@@ -1,8 +1,10 @@
 <mat-toolbar fxShow="true" fxShow.gt-sm="false" position="fixed" color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="setSearchingMode(false)">
-      <mat-icon *ngIf="!searchingMode">arrow_back</mat-icon>
-      <mat-icon *ngIf="searchingMode">close</mat-icon>
+    <button *ngIf="!searchingMode" mat-icon-button (click)="buyersNavigationService.toFindMarketPage()">
+      <mat-icon >arrow_back</mat-icon>
+    </button>
+    <button *ngIf="searchingMode" mat-icon-button (click)="setSearchingMode(false)">
+      <mat-icon>close</mat-icon>
     </button>
     <span *ngIf="!searchingMode">{{market.tradeName}}</span>
     <span *ngIf="!searchingMode" class="spacer"></span>
@@ -66,9 +68,11 @@
 <mat-toolbar position="fixed" color="primary" fxHide="true" fxHide.gt-sm="false">
     <mat-toolbar-row>
       <div style="flex: 1 1 30%">
-        <button mat-icon-button (click)="setSearchingMode(false)">
-          <mat-icon *ngIf="!searchingMode">arrow_back</mat-icon>
-          <mat-icon *ngIf="searchingMode">close</mat-icon>
+        <button *ngIf="!searchingMode" mat-icon-button (click)="buyersNavigationService.toFindMarketPage()">
+          <mat-icon >arrow_back</mat-icon>
+        </button>
+        <button *ngIf="searchingMode" mat-icon-button (click)="setSearchingMode(false)">
+          <mat-icon>close</mat-icon>
         </button>
         <span>{{market.tradeName}}</span>
       </div>

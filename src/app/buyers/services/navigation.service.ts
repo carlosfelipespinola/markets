@@ -14,6 +14,11 @@ export class NavigationService {
     this.router.navigate([fullPath]);
   }
 
+  public toFindMarketPage() {
+    const fullPath = buyersRoutesPathHierarchy.root.children.findMarket.fullPath;
+    this.router.navigate([fullPath]);
+  }
+
   public toBuyProductsAtMarketPage(marketId: string) {
     const fullPath = buyersRoutesPathHierarchy.root.children.buyProductsAtMarket.fullPath;
     const fullPathWithParams = fullPath.replace(':market', marketId);
