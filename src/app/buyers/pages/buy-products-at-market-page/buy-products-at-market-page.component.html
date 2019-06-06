@@ -20,24 +20,25 @@
 
 
 <div class="container" *ngIf="currentLayout === 'mobile'">
-  <div class="row overflow">
-    <button mat-stroked-button>Entrega: grátis</button>
-    <button mat-stroked-button>5 estrelas</button>
-    <button mat-stroked-button>Localização</button>
+  <div fxLayout="row nowrap" fxLayoutGap="10px" class="overflow padding-bottom">
+    <button fxFlex="0 0 auto" mat-stroked-button>Entrega: grátis</button>
+    <button fxFlex="0 0 auto" mat-stroked-button>5 estrelas</button>
+    <button fxFlex="0 0 auto" mat-stroked-button>Localização</button>
   </div>
 </div>
 
 <div *ngIf="!searchingMode && currentLayout === 'mobile'" class="container" position="sticky" style="margin: 0; height: 65px">
-  <div class="row overflow">
-    <mat-chip-list [multiple]="false">
+  <mat-chip-list [multiple]="false">
+    <div fxLayout="row nowrap" fxLayoutGap="10px" class="overflow padding-bottom">
       <mat-chip
-        *ngFor="let category of availableCategories" 
-        color="accent"
-        (click)="setSelectedCategory(category)"
-        [selected]="category.selected"
-        selectable="true">{{category.name}}</mat-chip>
-    </mat-chip-list>
-  </div>
+      fxFlex="0 0 auto"
+      *ngFor="let category of availableCategories" 
+      color="accent"
+      (click)="setSelectedCategory(category)"
+      [selected]="category.selected"
+      selectable="true">{{category.name}}</mat-chip>
+    </div>
+  </mat-chip-list>
 </div>
 
 <div class="container" *ngIf="currentLayout === 'mobile'">  
