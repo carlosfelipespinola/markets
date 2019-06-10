@@ -21,10 +21,8 @@ export class CartService {
 
   constructor(private readonly afs: AngularFirestore) { }
 
-  public async addProductToCart(product: ProductData, cartid: { userid: string, marketid: string }) {
+  public async updateCart(cart: Cart, cartid: { userid: string, marketid: string }) {
     const ref = this.afs.doc(this.pathToCart(cartid));
-    const cart = new Cart();
-    cart.products.push(new InCartProduct(product));
     await ref.set(cart.toObject(), {merge: true});
   }
 
