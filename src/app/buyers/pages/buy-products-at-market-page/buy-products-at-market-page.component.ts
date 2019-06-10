@@ -1,3 +1,4 @@
+import { CartService } from './../../../cart/services/cart.service';
 import { ProductService } from 'src/app/products/services/product.service';
 import { MarketService } from './../../../markets/services/market.service';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, Inject, AfterViewInit } from '@angular/core';
@@ -10,6 +11,8 @@ import { GoogleAuthService } from 'src/app/auth/services/google-auth.service';
 import { HomeNavigationService } from 'src/app/home/services/home-navigation.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavigationService } from '../../services/navigation.service';
+import { Cart } from 'src/app/cart/data-classes/Cart';
+import { InCartProduct } from 'src/app/cart/data-classes/InCartProduct';
 
 @Component({
   selector: 'app-buy-products-at-market-page',
@@ -18,6 +21,8 @@ import { NavigationService } from '../../services/navigation.service';
 })
 export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  public cart: Cart;
+  private useruid: string;
   public products: Array<ProductData> = [];
   public productsFilteredByCategory: Array<ProductData> = [];
   public productsFilteredBySearch: Array<ProductData> = [];
@@ -54,7 +59,8 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
     private marketService: MarketService,
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    public buyersNavigationService: NavigationService
+    public buyersNavigationService: NavigationService,
+    private cartService: CartService
   ) {
     breakPointObserver.observe([Breakpoints.Tablet, Breakpoints.Handset]).subscribe((result) => {
       if(result.matches) {
@@ -64,6 +70,7 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
       }
     });
     this.market = new MarketData();
+    this.cart = new Cart();
   }
 
   ngOnInit() {
@@ -76,7 +83,12 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
         this.productsFilteredBySearch = products;
       })
     });
-    
+    this.googleAuthService.authenticatedUser.subscribe((user) => {
+      this.useruid = user.uid;
+      this.cartService.getCart({userid: user.uid, marketid: marketUid}).subscribe((cart) => {
+        this.cart = cart;
+      })
+    })
   }
 
   ngAfterViewInit() {
@@ -124,5 +136,15 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
   public async logOut() {
     await this.googleAuthService.signOut();
     this.homeNavigationService.navigateToHomePage();
+  }
+
+  public async addProductToCart(product: ProductData) {
+    if (!this.useruid || !this.market.uid) {
+      console.log('Error addProductToCart line 142 of buy-products-at-market-page');
+      //TODO show error
+      return;
+    }
+    this.cart.products.push(new InCartProduct(product));
+    await this.cartService.updateCart(this.cart, {userid: this.useruid, marketid: this.market.uid});
   }
 }

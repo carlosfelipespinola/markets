@@ -50,7 +50,7 @@
         <div card-subtitle>{{product.price | currency}}</div>
         <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
         <div class="w100" card-actions>
-          <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
+          <button class="w100" mat-button color="primary" (click)="addProductToCart(product)">Adicionar ao carrinho</button>
         </div>
       </app-one-by-two-card>
   </div>
@@ -59,7 +59,7 @@
 
 
 <button *ngIf="!searchingMode" class="fab-btn" mat-fab color="accent" fxShow="true" fxShow.gt-sm="false">
-  <span class="badgeposition" matBadge="8" matBadgePosition="above before" matBadgeOverlap="true" matBadgeSize="medium" matBadgeColor="primary"></span>
+  <span class="badgeposition" [matBadge]="this.cart.productsCount()" matBadgePosition="above before" matBadgeOverlap="true" matBadgeSize="medium" matBadgeColor="primary"></span>
   <mat-icon>shopping_cart</mat-icon>
 </button>
 
@@ -106,7 +106,7 @@
           <div card-subtitle>{{product.price | currency}}</div>
           <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
           <div class="w100" card-actions>
-            <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
+            <button class="w100" mat-button color="primary" (click)="addProductToCart(product)">Adicionar ao carrinho</button>
           </div>
         </app-one-by-two-card>
       </div>
@@ -114,8 +114,19 @@
     </div>
     <div class="container margin-top margin-bottom fill-body-height" fxFlex="25%;">
       <h2>Carrinho</h2>
-      <div fxLayout="column">
+      <div fxLayout="column" *ngIf="cart.isEmpty">
         Seu carrinho está vazio
+      </div>
+      <div fxLayout="column" *ngIf="!cart.isEmpty">
+        <mat-list>
+          <mat-list-item *ngFor="let inCartProduct of cart.products">
+            <h4 mat-line>{{inCartProduct.product.name}}</h4>
+            <p mat-line>{{inCartProduct.product.price | currency}}</p>
+            <img width="50px" height="50px" *ngIf="inCartProduct.product.images.length > 0" [src]="inCartProduct.product.images[0]">
+            <button style="width: 50px; height: 50px" mat-button color="primary">X</button>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
       </div>
     </div>
   </div>
