@@ -87,6 +87,7 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
       this.useruid = user.uid;
       this.cartService.getCart({userid: user.uid, marketid: marketUid}).subscribe((cart) => {
         this.cart = cart;
+        this.cart.cartId = {userid: user.uid, marketid: marketUid};
       })
     })
   }

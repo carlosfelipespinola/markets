@@ -127,6 +127,9 @@
             <mat-divider></mat-divider>
           </mat-list-item>
         </mat-list>
+        <div class="w100">
+          <button class="w100" [disabled]="!cart.cartId" mat-flat-button color="primary" (click)="buyersNavigationService.toCheckout(cart.cartId)">Fazer Pedido</button>
+        </div>
       </div>
     </div>
   </div>

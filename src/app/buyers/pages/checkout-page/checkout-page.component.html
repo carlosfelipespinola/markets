@@ -1,0 +1,61 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="navigateBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Pedido</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="column" fxLayoutGap="10px" fxLayout.gt-sm="row">
+  <div class="container" fxFlex="50%">
+    <h2> Produtos </h2>
+    <div fxLayout="column" *ngIf="cart.isEmpty">
+      Seu carrinho está vazio
+    </div>
+    <div fxLayout="column" *ngIf="!cart.isEmpty">
+      <mat-list>
+        <mat-list-item *ngFor="let inCartProduct of cart.products">
+          <h4 mat-line>{{inCartProduct.product.name}}</h4>
+          <p mat-line>{{inCartProduct.product.price | currency}}</p>
+          <img width="50px" height="50px" *ngIf="inCartProduct.product.images.length > 0"
+            [src]="inCartProduct.product.images[0]">
+          <button style="width: 50px; height: 50px" mat-button color="warn">X</button>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+
+  <div class="container" fxFlex="50%">
+    <div *ngIf="cart.isEmpty">
+      <p>Impossivel finalizar pedido pois seu carrinho está vazinho</p>
+    </div>
+    <div fxLayout="column" *ngIf="!cart.isEmpty">
+      <div>
+        <h2> Pagemento </h2>
+        <p>Valor total a pagar: <br> <b>{{cart.price | currency}}</b></p>
+        <p>
+          Forma de pagamento: <br>
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="paymentMethod">
+            <mat-radio-button value="money"><span>Dinheiro</span></mat-radio-button>
+          </mat-radio-group>
+        </p>
+        
+      </div>
+      <div>
+        <h2> Entrega </h2>
+        <app-buyer-address #address></app-buyer-address>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div>
+    <div class="w100">
+      <button [disabled]="disableButton" (click)="submit()" class="w100" mat-flat-button color="primary">{{ submittingOrder ? 'Fazendo Pedido...' : 'Confirmar pedido'}}</button>
+    </div>
+  </div>
+</div>
