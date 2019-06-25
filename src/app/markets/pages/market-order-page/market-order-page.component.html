@@ -1,0 +1,58 @@
+<div class="page-body">
+  <div class="margin-top" fxLayout="column" fxLayoutGap="15px">
+
+    <div class="container">
+      <h2> Alterar Status </h2>
+      <div>
+        <mat-form-field class="w100">
+          <mat-label>Status</mat-label>
+          <mat-select (selectionChange)="statusChange($event)" [value]="order.status">
+            <mat-option *ngFor="let status of status" [value]="status.value">
+              {{status.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+            
+      </div>
+    </div>
+
+    <div class="container">
+      <h2> Produtos </h2>
+      <div class="overflow padding-bottom" fxLayout="row nowrap" fxLayoutGap="10px">
+        <mat-card fxFlex="0 0 auto" *ngFor="let product of order.products" [class.mat-elevation-z0]="true">
+          <img mat-card-image [src]="product.product.images[0]" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p>
+              {{product.product.name}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    
+    <div class="container">
+      <h2> Detalhes do Pedido </h2>
+      <div class="order-details-table" fxLayout="column" fxLayoutGap="10px">
+        <div class="row-group" fxLayout="row nowrap" fxLayoutGap="15px">
+          <span>ID do pedido</span>
+          <span> #{{order.uid | uppercase}} </span>
+        </div>
+        <div class="row-group" fxLayout="row nowrap" fxLayoutGap="15px">
+          <span>Valor total</span>
+          <span> {{order.price | currency}} </span>
+        </div>
+        <div class="row-group" fxLayout="row nowrap" fxLayoutGap="15px">
+          <span>Pagamento</span>
+          <span> Dinheiro </span>
+        </div>
+        <div class="row-group" fxLayout="row nowrap" fxLayoutGap="15px">
+          <span>Status atual</span>
+          <span> {{order.statusString}} </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+

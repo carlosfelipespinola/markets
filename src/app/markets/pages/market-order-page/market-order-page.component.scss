@@ -1,0 +1,36 @@
+.page-body {
+  background-color: whitesmoke;
+  height: 100vh;
+}
+
+.background {
+  background-color: white;
+}
+
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  margin: auto;
+}
+
+mat-card{
+  width: 120px;
+}
+
+.order-details-table{
+  .row-group {
+
+    > span {
+      width: 120px;
+    }
+
+    > span:last-child {
+      color: rgba($color: #000000, $alpha: 0.5);
+    }
+  }
+}
+
+mat-select{
+  width: 100%;
+}

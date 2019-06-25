@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { Order, IOrder } from '../data-classes/Order';
+import { Order, IOrder, OrderStatus } from '../data-classes/Order';
 import { Observable, from } from 'rxjs';
 
 @Injectable({
@@ -26,6 +26,11 @@ export class OrderServicesService {
     return order.uid;
   }
 
+  public async updateOrderStatus(orderid: string, orderStatus: OrderStatus) {
+    const ref = this.afs.doc(this.pathToOrder(orderid));
+    await ref.set({ status: orderStatus }, { merge: true });
+  }
+
   public getOrder(uid: string): Observable<Order> {
     const ref = this.afs.doc(this.pathToOrder(uid));
     return ref.get().pipe(
@@ -38,8 +43,16 @@ export class OrderServicesService {
     )
   }
 
-  public getOrders(userUid: string): Observable<Array<Order>> {
-    return from(this.afs.firestore.collection(this.collection()).where('userUid', '==', userUid).get())
+  public getOrdersOfUser(userUid: string): Observable<Array<Order>> {
+    return this.getOrders('userUid', userUid);
+  }
+
+  public getOrdersOfMarket(marketUid: string): Observable<Array<Order>> {
+    return this.getOrders('marketUid', marketUid);
+  }
+
+  private getOrders(field: string, value: string): Observable<Array<Order>> {
+    return from(this.afs.firestore.collection(this.collection()).where(field, '==', value).get())
     .pipe(
       map((value) => {
         if(value.empty) {

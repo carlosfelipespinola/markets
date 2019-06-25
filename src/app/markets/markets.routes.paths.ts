@@ -11,6 +11,13 @@ const products = {
     updateProduct: { name: 'Atualizar Produto', path: 'update-product/:product', children: {} }
   }
 };
+const orders = {
+  name: 'Orders',
+  path: 'orders',
+  children: {
+    orderPage: { name: 'Order', path: 'order/:order', children: {} }
+  }
+}
 const myBusiness = { name: 'Meu estabelecimento', path: 'my-businness' };
 
 export const marketRoutesPathHierarchy = {
@@ -40,6 +47,18 @@ export const marketRoutesPathHierarchy = {
             path: products.children.updateProduct.path,
             fullPath: `/${root.path}/${products.path}/${products.children.updateProduct.path}`
           },
+        }
+      },
+      ordersPage: {
+        name: orders.name,
+        path: orders.path,
+        fullPath: `/${root.path}/${orders.path}`,
+        children: {
+          orderPage: {
+            name: orders.children.orderPage.name,
+            path: orders.children.orderPage.path,
+            fullPath: `/${root.path}/${orders.path}/${orders.children.orderPage.path}`
+          }
         }
       },
       myBusinessPage: {

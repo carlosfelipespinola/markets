@@ -1,3 +1,4 @@
+import { MatListModule } from '@angular/material/list';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MarketsComponent } from './markets.component';
@@ -22,6 +23,10 @@ import { ProductFormComponent } from './forms/product-form/product-form.componen
 import {MatRadioModule} from '@angular/material/radio';
 import { InputModule } from '../input/input.module';
 import { CardsModule } from '../ui/cards/cards.module';
+import { MarketOrdersPageComponent } from './pages/market-orders-page/market-orders-page.component';
+import { MarketOrderPageComponent } from './pages/market-order-page/market-order-page.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -33,7 +38,9 @@ import { CardsModule } from '../ui/cards/cards.module';
     CreateProductPageComponent,
     UpdateProductPageComponent,
     MyBusinessPageComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    MarketOrdersPageComponent,
+    MarketOrderPageComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +57,10 @@ import { CardsModule } from '../ui/cards/cards.module';
     AngularFireStorageModule,
     MatRadioModule,
     InputModule,
-    CardsModule
+    CardsModule,
+    MatListModule,
+    MatCardModule,
+    MatSelectModule
   ],
   exports: []
 })
