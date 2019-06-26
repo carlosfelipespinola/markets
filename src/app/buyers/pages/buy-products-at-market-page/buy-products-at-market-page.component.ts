@@ -1,3 +1,4 @@
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ProductCategory } from './../../../products/data-classes/product-data';
 import { CartService } from './../../../cart/services/cart.service';
 import { ProductService } from 'src/app/products/services/product.service';
@@ -61,7 +62,8 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     public buyersNavigationService: NavigationService,
-    private cartService: CartService
+    private cartService: CartService,
+    private snackBar: MatSnackBar
   ) {
     breakPointObserver.observe([Breakpoints.Tablet, Breakpoints.Handset]).subscribe((result) => {
       if(result.matches) {
@@ -157,6 +159,11 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
     }
     this.cart.products.push(new InCartProduct(product));
     await this.cartService.updateCart(this.cart, {userid: this.useruid, marketid: this.market.uid});
+  }
+
+  public async addProductToCartAndShowMessage(product: ProductData) {
+    await this.addProductToCart(product);
+    this.snackBar.open('Produto adicionado ao carrinho com sucesso', null, {duration: 3000});
   }
 
   public async removeProductFromCart(product: ProductData) {

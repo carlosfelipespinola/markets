@@ -29,6 +29,7 @@ import { ViewOrderComponent } from './pages/view-order/view-order.component';
 import { BuyerOrdersComponent } from './pages/buyer-orders/buyer-orders.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   entryComponents: [],
@@ -65,7 +66,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     MatCardModule,
     MatMenuModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
 })
 export class BuyersModule { }

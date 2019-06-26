@@ -138,7 +138,7 @@
           <div card-subtitle>{{product.price | currency}}</div>
           <div card-img><img *ngIf="product.images.length > 0" [src]="product.images[0]"></div>
           <div class="w100" card-actions>
-            <button class="w100" mat-button color="primary">Adicionar ao carrinho</button>
+            <button class="w100" mat-button color="primary" (click)="addProductToCartAndShowMessage(product)">Adicionar ao carrinho</button>
           </div>
         </app-one-by-two-card>
       </div>
