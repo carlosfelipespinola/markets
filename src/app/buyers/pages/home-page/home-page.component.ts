@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public isLoadingPageContent = false;
 
   constructor(
-    private buyersNavigationService: NavigationService,
+    public buyersNavigationService: NavigationService,
     private marketService: MarketService,
     private googleAuthService: GoogleAuthService,
     private homeNavigationService: HomeNavigationService
