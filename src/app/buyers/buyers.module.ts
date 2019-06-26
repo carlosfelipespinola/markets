@@ -28,6 +28,7 @@ import { BuyerAddressComponent } from './forms/buyer-address/buyer-address.compo
 import { ViewOrderComponent } from './pages/view-order/view-order.component';
 import { BuyerOrdersComponent } from './pages/buyer-orders/buyer-orders.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   entryComponents: [],
@@ -63,7 +64,8 @@ import {MatMenuModule} from '@angular/material/menu';
     MatRadioModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ],
 })
 export class BuyersModule { }

@@ -11,11 +11,8 @@ import { NavigationService } from '../../services/navigation.service';
 export class HomePageComponent implements OnInit, OnDestroy {
 
 
-  public marketsFound: Array<MarketData> = [
-    new MarketData({tradeName: "Supermercado Crimeia", rating: 4}),
-    new MarketData({tradeName: "Supermercado Jacaré", rating: 5}),
-    new MarketData({tradeName: "Supermercado Monteiro", rating: 3.5})
-  ];
+  public marketsFound: Array<MarketData> = [];
+  public isLoadingPageContent = false;
 
   constructor(
     private buyersNavigationService: NavigationService,
@@ -23,10 +20,12 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.isLoadingPageContent = true;
     this.marketService.getMarkets().subscribe((markets) => {
-      console.log(markets);
+      this.isLoadingPageContent = false;
       this.marketsFound = markets;
     }, (error) => {
+      this.isLoadingPageContent = false;
       console.log(error);
       // TODO show error message
     })
