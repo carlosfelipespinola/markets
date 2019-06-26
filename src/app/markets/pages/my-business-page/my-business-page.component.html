@@ -1,21 +1,32 @@
 <div class="container">
   <form #form="ngForm" (submit)="formSubmmited()">
+    <div fxLayout="column">
+      <h2>Status</h2>
+      <mat-form-field class="w100">
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="myBusiness.marketStatus" required>
+          <mat-option *ngFor="let status of status" [value]="status.value">
+            {{status.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
     
     <div fxLayout="column">
       <h2>Dados empresáriais</h2>
       <mat-form-field appearance="outline">
         <mat-label>Nome Fantasia</mat-label>
-        <input matInput [(ngModel)]="myBusiness.tradeName" name="tradeName">
+        <input matInput [(ngModel)]="myBusiness.tradeName" name="tradeName" required>
       </mat-form-field>
   
       <mat-form-field appearance="outline">
         <mat-label>Razão Social</mat-label>
-        <input matInput [(ngModel)]="myBusiness.companyName" name="companyName">
+        <input matInput [(ngModel)]="myBusiness.companyName" name="companyName" required>
       </mat-form-field>
   
       <mat-form-field appearance="outline">
         <mat-label>CNPJ</mat-label>
-        <input matInput [(ngModel)]="myBusiness.companyNumberId" name="companyNumberid">
+        <input matInput [(ngModel)]="myBusiness.companyNumberId" name="companyNumberid" required>
       </mat-form-field>
     </div>
     
@@ -23,32 +34,32 @@
       <h2>Endereço</h2>
       <mat-form-field appearance="outline">
         <mat-label>CEP</mat-label>
-        <input matInput [(ngModel)]="myBusiness.address.zipCode" name="zipCode">
+        <input matInput [(ngModel)]="myBusiness.address.zipCode" name="zipCode" required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>País</mat-label>
-        <input matInput [(ngModel)]="myBusiness.address.country" name="country">
+        <input matInput [(ngModel)]="myBusiness.address.country" name="country" required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Estado</mat-label>
-        <input matInput [(ngModel)]="myBusiness.address.state" name="state">
+        <input matInput [(ngModel)]="myBusiness.address.state" name="state" required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Cidade</mat-label>
-        <input matInput [(ngModel)]="myBusiness.address.city" name="city">
+        <input matInput [(ngModel)]="myBusiness.address.city" name="city" required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Endereço</mat-label>
-        <input matInput [(ngModel)]="myBusiness.address.address" name="address">
+        <input matInput [(ngModel)]="myBusiness.address.address" name="address" required>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Complemento</mat-label>
-        <input matInput [(ngModel)]="myBusiness.address.addOnAdress" name="addressAddOn">
+        <input matInput [(ngModel)]="myBusiness.address.addOnAdress" name="addressAddOn" required>
       </mat-form-field>
     </div>
 
     <div fxLayout="column">
-      <button mat-flat-button color="accent">Salvar alterações</button>
+      <button mat-flat-button [disabled]="!form.valid" color="accent">Salvar alterações</button>
     </div>
 
     

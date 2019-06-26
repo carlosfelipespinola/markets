@@ -1,4 +1,4 @@
-import { MarketData } from 'src/app/markets/data_classes/MarketData';
+import { MarketData, MarketStatus } from 'src/app/markets/data_classes/MarketData';
 import { Component, OnInit } from '@angular/core';
 import { BusinessDetailService } from '../../services/business-detail.service';
 
@@ -9,6 +9,11 @@ import { BusinessDetailService } from '../../services/business-detail.service';
 })
 export class MyBusinessPageComponent implements OnInit {
 
+  status = [
+    {value: MarketStatus.opened, viewValue: 'Aberto'},
+    {value: MarketStatus.closed, viewValue: 'Fechado'},
+  ];
+
   public myBusiness: MarketData = new MarketData();
 
   constructor(private businessDetailService: BusinessDetailService) { }
@@ -16,6 +21,9 @@ export class MyBusinessPageComponent implements OnInit {
   ngOnInit() {
     this.businessDetailService.getData().subscribe((marketData) => {
       this.myBusiness = marketData;
+      console.log(this.myBusiness.marketStatus);
+      console.log(this.status);
+      console.log(marketData);
     });
   }
 

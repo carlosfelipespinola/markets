@@ -1,8 +1,8 @@
-import { MarketData } from './../data_classes/MarketData';
+import { MarketData, MarketStatus } from './../data_classes/MarketData';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class MarketService {
   }
 
   public getMarkets(): Observable<Array<MarketData>> {
-    return this.afs.collection(this.collection).get().pipe(
+    return from(this.afs.firestore.collection(this.collection).where('marketStatus', '==', MarketStatus.opened).get()).pipe(
       map((value) => {
         if (value.empty) {
           return []

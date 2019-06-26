@@ -1,5 +1,7 @@
 //@ts-check
 
+export enum MarketStatus { opened, closed }
+
 interface IAddress {
   country: string;
   state: string;
@@ -48,6 +50,7 @@ export class MarketData implements IMarketData {
   public address: Address;
   public rating: number;
   public uid: string;
+  public marketStatus: MarketStatus;
 
   constructor(data?: IMarketData | any) {
 
@@ -60,6 +63,7 @@ export class MarketData implements IMarketData {
     this.companyNumberId = data.companyNumberId || null;
     this.address = new Address(data.address);
     this.rating = typeof data.rating === 'number' ? data.rating : parseInt(data.rating, 10);
+    this.marketStatus = isNaN(data.marketStatus) ? MarketStatus.closed : data.marketStatus;
   }
 
   get hasRating() {
@@ -67,20 +71,21 @@ export class MarketData implements IMarketData {
   }
 
   toObject() {
-    return {
-      companyName: this.companyName,
-      tradeName: this.tradeName,
-      companyNumberId: this.companyNumberId,
-      rating: this.rating,
-      address: {
-        country: this.address.country,
-        state: this.address.state,
-        city: this.address.city,
-        zipCode: this.address.zipCode,
-        address: this.address.address,
-        addOnAdress: this.address.addOnAdress
-      }  
-    }
+    return JSON.parse(JSON.stringify(this));
+    // return {
+    //   companyName: this.companyName,
+    //   tradeName: this.tradeName,
+    //   companyNumberId: this.companyNumberId,
+    //   rating: this.rating,
+    //   address: {
+    //     country: this.address.country,
+    //     state: this.address.state,
+    //     city: this.address.city,
+    //     zipCode: this.address.zipCode,
+    //     address: this.address.address,
+    //     addOnAdress: this.address.addOnAdress
+    //   }  
+    // }
   }
 
 }
