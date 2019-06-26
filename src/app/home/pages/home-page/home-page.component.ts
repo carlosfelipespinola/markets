@@ -24,6 +24,7 @@ export class HomePageComponent implements OnInit {
   public googleSignInButtonImage = GOOGLE_SIGN_IN_BUTTON_ASSET;
   public googleSignInButtonImage2x = GOOGLE_SIGN_IN_BUTTON_ASSET2X;
   public logo = LOGO_HORIZONTAL;
+  public isTryingLogin = false;
   constructor(
     private router: Router,
     private readonly googleAuthService: GoogleAuthService,
@@ -36,9 +37,11 @@ export class HomePageComponent implements OnInit {
   }
 
   public async login() {
+    this.isTryingLogin = true;
     const credentials = await this.googleAuthService.signIn();
     const user = await this.userServices.getUserDataByUserUid(credentials.user.uid).toPromise();
     const userData = new UserData(user.data());
+    this.isTryingLogin = false;
     if (!this.userServices.userIsRegistered(userData)) {
       this.showSnackbarMessage('Você deve se registrar primeiro para poder fazer o login');
       this.showRegisterTab();
@@ -65,8 +68,10 @@ export class HomePageComponent implements OnInit {
   }
 
   public async registerWithGoogle() {
+    this.isTryingLogin = true;
     const credentials = await this.googleAuthService.signIn();
     const userData = await this.registerAuthenticatedUser(credentials.user);
+    this.isTryingLogin = false;
     this.navigateBasedOnUserRole(userData);
   }
 

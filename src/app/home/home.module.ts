@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { SelectRegisterModeComponent } from './components/select-register-mode/select-register-mode.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [HomePageComponent, SelectRegisterModeComponent],
@@ -23,7 +24,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatChipsModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ]
 })
 export class HomeModule { }
