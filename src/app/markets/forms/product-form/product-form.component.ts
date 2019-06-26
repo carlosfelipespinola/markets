@@ -1,6 +1,6 @@
 import { ProductService } from './../../../products/services/product.service';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ProductData } from 'src/app/products/data-classes/product-data';
+import { ProductData, ProductCategory } from 'src/app/products/data-classes/product-data';
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { GoogleAuthService } from 'src/app/auth/services/google-auth.service';
@@ -12,7 +12,11 @@ import { GoogleAuthService } from 'src/app/auth/services/google-auth.service';
 })
 export class ProductFormComponent implements OnInit, OnDestroy {
 
- 
+  categories = [
+    {value: ProductCategory.foods, viewValue: 'Comida'},
+    {value: ProductCategory.drinks, viewValue: 'Bebida'},
+    {value: ProductCategory.snacks, viewValue: 'Lanches'},
+  ];
 
   @Input()
   public product: ProductData;

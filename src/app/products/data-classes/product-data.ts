@@ -1,3 +1,6 @@
+
+export enum ProductCategory { any, foods, drinks, snacks }
+
 export class ProductData {
 
   public uid: string;
@@ -6,6 +9,7 @@ export class ProductData {
   public salePrice: number;
   public images: Array<string>;
   public isAvailable: boolean;
+  public category: ProductCategory;
 
 
   constructor(data?: any) {
@@ -18,6 +22,7 @@ export class ProductData {
     this.price = parseFloat(data.price);
     this.salePrice = parseFloat(data.salePrice);
     this.isAvailable = data.isAvailable || false;
+    this.category = data.category;
 
     if(isNaN(this.price)) {
       this.price = null;
@@ -25,6 +30,10 @@ export class ProductData {
     
     if (isNaN(this.salePrice)) {
       this.salePrice = null;
+    }
+
+    if (isNaN(this.category)) {
+      this.category = ProductCategory.any;
     }
   }
 
