@@ -1,3 +1,4 @@
+import { ProductCategory } from './../../../products/data-classes/product-data';
 import { CartService } from './../../../cart/services/cart.service';
 import { ProductService } from 'src/app/products/services/product.service';
 import { MarketService } from './../../../markets/services/market.service';
@@ -43,11 +44,11 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
   @ViewChild('searchInput')
   public searchInput: ElementRef<HTMLInputElement>;
   private defaultBodyOverflowStyle = null;
-  public availableCategories: Array<{name: string, selected: boolean, getColor: () => string}> = [
-    {name: 'Todos os itens', selected: true, getColor: () => 'primary' },
-    {name: 'Bebidas', selected: false, getColor: () => 'primary'},
-    {name: 'Comidas', selected: false, getColor: () => 'accent'},
-    {name: 'Limpeza', selected: false, getColor: () => 'accent'},
+  public availableCategories: Array<{name: string, selected: boolean, value: number}> = [
+    {name: 'Todos os itens', selected: true, value: ProductCategory.any},
+    {name: 'Bebidas', selected: false, value: ProductCategory.drinks},
+    {name: 'Comidas', selected: false, value: ProductCategory.foods},
+    {name: 'Lanches', selected: false, value: ProductCategory.snacks},
   ];
   public currentLayout: 'mobile' | 'web' = 'mobile';
 
@@ -128,6 +129,15 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
         candidateCategory.selected = false;
       }
     });
+    this.filterProductsByCategory();
+  }
+
+  private filterProductsByCategory() {
+    if (this.selectedCategory.value === ProductCategory.any) {
+      this.productsFilteredByCategory = this.products;
+      return;
+    }
+    this.productsFilteredByCategory = this.products.filter((product) => product.category === this.selectedCategory.value);
   }
 
   get selectedCategory() {
