@@ -16,7 +16,7 @@ export class BuyerOrdersComponent implements OnInit {
   constructor(
     private orderServices: OrderServicesService,
     private googleAuthService: GoogleAuthService,
-    private buyerNavigationService: NavigationService
+    public buyerNavigationService: NavigationService
   ) { }
 
   ngOnInit() {

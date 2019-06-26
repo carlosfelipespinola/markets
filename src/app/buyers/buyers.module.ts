@@ -27,6 +27,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { BuyerAddressComponent } from './forms/buyer-address/buyer-address.component';
 import { ViewOrderComponent } from './pages/view-order/view-order.component';
 import { BuyerOrdersComponent } from './pages/buyer-orders/buyer-orders.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   entryComponents: [],
@@ -61,7 +62,8 @@ import { BuyerOrdersComponent } from './pages/buyer-orders/buyer-orders.componen
     CardsModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule
   ],
 })
 export class BuyersModule { }
