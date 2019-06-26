@@ -58,7 +58,7 @@
 
 
 
-<button *ngIf="!searchingMode" class="fab-btn" mat-fab color="accent" fxShow="true" fxShow.gt-sm="false">
+<button *ngIf="!searchingMode" class="fab-btn" mat-fab color="accent" fxShow="true" fxShow.gt-sm="false" (click)="buyersNavigationService.toCheckout(cart.cartId)">
   <span class="badgeposition" [matBadge]="this.cart.productsCount()" matBadgePosition="above before" matBadgeOverlap="true" matBadgeSize="medium" matBadgeColor="primary"></span>
   <mat-icon>shopping_cart</mat-icon>
 </button>
