@@ -35,7 +35,7 @@
 </div>
 
 <div class="container" fxShow="true" fxShow.gt-sm="false">  
-  <div class="row">
+  <div fxLayout="column" fxLayoutGap="10px">
       <app-one-by-two-card *ngFor="let product of productsFilteredByCategory">
         <div card-title>{{product.name}}</div>
         <div card-subtitle>{{product.price | currency}}</div>

@@ -92,6 +92,11 @@ button {
   overflow: auto;
 }
 
+.no-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
