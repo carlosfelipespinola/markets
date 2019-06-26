@@ -60,7 +60,7 @@ import {MatSelectModule} from '@angular/material/select';
     CardsModule,
     MatListModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: []
 })

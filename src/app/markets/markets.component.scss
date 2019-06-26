@@ -6,3 +6,12 @@
 mat-drawer-container{
   height: calc(100% - 64px);
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a.active {
+  color: green;
+}
