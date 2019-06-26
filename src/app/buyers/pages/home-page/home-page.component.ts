@@ -2,6 +2,8 @@ import { MarketService } from './../../../markets/services/market.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MarketData } from 'src/app/markets/data_classes/MarketData';
 import { NavigationService } from '../../services/navigation.service';
+import { GoogleAuthService } from 'src/app/auth/services/google-auth.service';
+import { HomeNavigationService } from 'src/app/home/services/home-navigation.service';
 
 @Component({
   selector: 'buyers-home-page',
@@ -16,7 +18,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   constructor(
     private buyersNavigationService: NavigationService,
-    private marketService: MarketService
+    private marketService: MarketService,
+    private googleAuthService: GoogleAuthService,
+    private homeNavigationService: HomeNavigationService
   ) { }
 
   ngOnInit() {
@@ -37,6 +41,11 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   public onMarketClick(market: MarketData) {
     this.buyersNavigationService.toBuyProductsAtMarketPage(market.uid);
+  }
+
+  public async logOut() {
+    await this.googleAuthService.signOut();
+    this.homeNavigationService.navigateToHomePage();
   }
 
 }
