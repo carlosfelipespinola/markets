@@ -22,11 +22,9 @@ export class Order implements IOrder {
   public deliveryAddress: BuyerAddress;
 
   constructor(data?: IOrder | any) {
-    console.log(data);
     if (!data) {
       data = { userUid: null, marketUid: null, products: [], status: null, uid: null, deliveryAddress: new BuyerAddress() };
     }
-    console.log(data);
     this.userUid = data.userUid || null;
     this.marketUid = data.marketUid || null;
     this.uid = data.uid || null;

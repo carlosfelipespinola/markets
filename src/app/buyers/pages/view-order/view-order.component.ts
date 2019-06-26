@@ -24,7 +24,6 @@ export class ViewOrderComponent implements OnInit {
     this.orderUid = this.activatedRoute.snapshot.params.order;
     this.orderServices.getOrder(this.orderUid).subscribe((order) => {
       this.order = order;
-      console.log(order);
       order.products
     })
   }

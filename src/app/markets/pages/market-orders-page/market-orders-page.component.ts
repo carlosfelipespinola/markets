@@ -23,7 +23,6 @@ export class MarketOrdersPageComponent implements OnInit {
   ngOnInit() {
     this.googleAuthService.authenticatedUser.subscribe((user) => {
       this.orderServices.getOrdersOfMarket(user.uid).subscribe((orders) => {
-        console.log(orders);
         this.orders = orders;
       });
     });

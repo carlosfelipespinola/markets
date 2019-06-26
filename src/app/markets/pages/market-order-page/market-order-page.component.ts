@@ -35,7 +35,6 @@ export class MarketOrderPageComponent implements OnInit {
     this.orderServices.getOrder(this.orderUid).subscribe((order) => {
       this.order = order;
       this.selectedStatus = order.status;
-      console.log(order);
       order.products
     })
   }

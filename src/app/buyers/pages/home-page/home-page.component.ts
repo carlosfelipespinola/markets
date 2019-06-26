@@ -31,7 +31,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
       this.marketsFound = markets;
     }, (error) => {
       this.isLoadingPageContent = false;
-      console.log(error);
       // TODO show error message
     })
   }

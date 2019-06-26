@@ -40,7 +40,7 @@ export class BusinessDetailService {
         return marketData;
       })
       .catch((error) => {
-        console.log(error);
+        //TODO show error
       })
       .finally(() => sub.unsubscribe());
     })

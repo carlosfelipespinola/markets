@@ -21,9 +21,6 @@ export class MyBusinessPageComponent implements OnInit {
   ngOnInit() {
     this.businessDetailService.getData().subscribe((marketData) => {
       this.myBusiness = marketData;
-      console.log(this.myBusiness.marketStatus);
-      console.log(this.status);
-      console.log(marketData);
     });
   }
 

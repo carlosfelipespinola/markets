@@ -22,7 +22,6 @@ export class BuyerOrdersComponent implements OnInit {
   ngOnInit() {
     this.googleAuthService.authenticatedUser.subscribe((user) => {
       this.orderServices.getOrdersOfUser(user.uid).subscribe((orders) => {
-        console.log(orders);
         this.orders = orders;
       });
     });
