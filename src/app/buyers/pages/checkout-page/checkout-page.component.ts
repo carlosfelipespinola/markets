@@ -7,6 +7,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ICartId, Cart } from 'src/app/cart/data-classes/Cart';
 import { BuyerAddressComponent } from '../../forms/buyer-address/buyer-address.component';
 import { OrderServicesService } from 'src/app/orders/services/order-services.service';
+import { ProductData } from 'src/app/products/data-classes/product-data';
 
 @Component({
   selector: 'app-checkout-page',
@@ -79,6 +80,14 @@ export class CheckoutPageComponent implements OnInit {
     this.buyersNavigationService.toBuyProductsAtMarketPage(this.marketUid);
   }
 
-
+  public async removeProductFromCart(product: ProductData) {
+    if (!this.userUid || !this.marketUid) {
+      console.error('Error addProductToCart line 154 of buy-products-at-market-page');
+      //TODO show error
+      return;
+    }
+    this.cart.products = this.cart.products.filter((inCartProduct) => inCartProduct.product.uid !== product.uid);
+    await this.cartService.updateCart(this.cart, {userid: this.userUid, marketid: this.marketUid});
+  }
 
 }

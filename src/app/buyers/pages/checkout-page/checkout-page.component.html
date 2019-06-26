@@ -20,7 +20,7 @@
           <p mat-line>{{inCartProduct.product.price | currency}}</p>
           <img width="50px" height="50px" *ngIf="inCartProduct.product.images.length > 0"
             [src]="inCartProduct.product.images[0]">
-          <button style="width: 50px; height: 50px" mat-button color="warn">X</button>
+          <button style="width: 50px; height: 50px" mat-button color="warn" (click)="removeProductFromCart(inCartProduct.product)">X</button>
           <mat-divider></mat-divider>
         </mat-list-item>
       </mat-list>

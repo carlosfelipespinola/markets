@@ -141,11 +141,21 @@ export class BuyProductsAtMarketPageComponent implements OnInit, OnDestroy, Afte
 
   public async addProductToCart(product: ProductData) {
     if (!this.useruid || !this.market.uid) {
-      console.log('Error addProductToCart line 142 of buy-products-at-market-page');
+      console.error('Error addProductToCart line 142 of buy-products-at-market-page');
       //TODO show error
       return;
     }
     this.cart.products.push(new InCartProduct(product));
+    await this.cartService.updateCart(this.cart, {userid: this.useruid, marketid: this.market.uid});
+  }
+
+  public async removeProductFromCart(product: ProductData) {
+    if (!this.useruid || !this.market.uid) {
+      console.error('Error addProductToCart line 154 of buy-products-at-market-page');
+      //TODO show error
+      return;
+    }
+    this.cart.products = this.cart.products.filter((inCartProduct) => inCartProduct.product.uid !== product.uid);
     await this.cartService.updateCart(this.cart, {userid: this.useruid, marketid: this.market.uid});
   }
 }
