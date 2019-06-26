@@ -18,7 +18,7 @@
 
 <mat-list *ngIf="marketsFound.length > 0 && !isLoadingPageContent">
   <mat-list-item matRipple *ngFor="let market of marketsFound" (click)="onMarketClick(market)">
-    <img width="50" height="50" src="https://www.w3schools.com/howto/img_avatar2.png" alt="foto-mercado">
+    <img width="50" height="50" [src]="noImageImage" alt="foto-mercado">
     <h4 mat-line>{{market.tradeName}}</h4>
     <p mat-line></p>
     <mat-divider></mat-divider>

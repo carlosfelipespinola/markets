@@ -1,3 +1,4 @@
+import { NO_IMAGE_IMAGE } from './../../../app.consts';
 import { MarketService } from './../../../markets/services/market.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MarketData } from 'src/app/markets/data_classes/MarketData';
@@ -12,7 +13,7 @@ import { HomeNavigationService } from 'src/app/home/services/home-navigation.ser
 })
 export class HomePageComponent implements OnInit, OnDestroy {
 
-
+  public noImageImage: string = NO_IMAGE_IMAGE;
   public marketsFound: Array<MarketData> = [];
   public isLoadingPageContent = false;
 
