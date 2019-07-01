@@ -15,7 +15,7 @@ const orders = {
   name: 'Orders',
   path: 'orders',
   children: {
-    orderPage: { name: 'Order', path: 'order/:order', children: {} }
+    orderPage: { name: 'Pedidos', path: 'order/:order', children: {} }
   }
 }
 const myBusiness = { name: 'Meu estabelecimento', path: 'my-businness' };
