@@ -11,6 +11,8 @@ import { BuyersModule } from './buyers/buyers.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCZLMZthXxXiUMhRuIO1RA_JvHrarezlHg',
@@ -35,6 +37,7 @@ const firebaseConfig = {
     AngularFirestoreModule,
     HomeModule,
     BuyersModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
