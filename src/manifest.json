@@ -1,6 +1,6 @@
 {
-  "name": "markets",
-  "short_name": "markets",
+  "name": "market",
+  "short_name": "market",
   "theme_color": "#2e7d32",
   "background_color": "#fafafa",
   "display": "standalone",
