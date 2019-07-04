@@ -12,10 +12,10 @@ const products = {
   }
 };
 const orders = {
-  name: 'Orders',
+  name: 'Pedidos',
   path: 'orders',
   children: {
-    orderPage: { name: 'Pedidos', path: 'order/:order', children: {} }
+    orderPage: { name: 'Pedido', path: 'order/:order', children: {} }
   }
 }
 const myBusiness = { name: 'Meu estabelecimento', path: 'my-businness' };
