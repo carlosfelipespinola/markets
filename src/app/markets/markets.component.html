@@ -11,7 +11,7 @@
       <div fxLayout="column">
         <mat-list>
           <mat-list-item *ngFor="let routeUrl of routeUrls">
-            <a routerLink="{{routeUrl.url}}" routerLinkActive="active">
+            <a routerLink="{{routeUrl.url}}" routerLinkActive="active" (click)="drawer.close()">
               {{routeUrl.name}}  
             </a>
           </mat-list-item>
